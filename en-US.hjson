@@ -1,0 +1,8 @@
+Mods: {
+	Heavens_Above: {
+		Keybinds: {
+			"Leave SubWorld.DisplayName": Leave  Sub World
+			"Enter SubWorld.DisplayName": Enter  Sub World
+		}
+	}
+}

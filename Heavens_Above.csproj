@@ -2,17 +2,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\tModLoader.targets" />
   <PropertyGroup>
-    <AssemblyName>HeavensAbove</AssemblyName>
+    <AssemblyName>Heavens_Above</AssemblyName>
     <TargetFramework>net6.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="SubworldLibrary">
-      <HintPath>..\..\..\..\..\..\Desktop\SubWorldLib\SubworldLibrary.dll</HintPath>
-    </Reference>
   </ItemGroup>
 </Project>

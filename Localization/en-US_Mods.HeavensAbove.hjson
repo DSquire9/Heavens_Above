@@ -1,1 +1,4 @@
-# This file will automatically update with entries for new content after a build and reload
+Keybinds: {
+	"Leave SubWorld.DisplayName": Leave  Sub World
+	"Enter SubWorld.DisplayName": Enter  Sub World
+}
