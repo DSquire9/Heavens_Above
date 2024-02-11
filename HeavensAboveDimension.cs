@@ -63,8 +63,10 @@ namespace Heavens_Above
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
             progress.Message = "Generating Islands";
-            Island isl = new Island();
+            Island isl = new Island(0);
             isl.Generate(false);
+            Island isl2 = new Island(-1,15);
+            isl2.Generate(false);
         }
     }
     public class UpdateSubworldSystem : ModSystem
