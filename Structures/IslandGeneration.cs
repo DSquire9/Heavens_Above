@@ -26,13 +26,19 @@ namespace HeavensAbove.Structures
             switch(islandType)
             {
                 case 0:
-                    islandTiles = StructureData.cubeIsland;
+                    islandTiles = StructureData.largeIsland;
                     islandWidth = islandTiles.GetLength(1);
                     islandHeight = islandTiles.GetLength(0);
                     break;
                 case 1:
+                    islandTiles = StructureData.smallIsland;
+                    islandWidth = islandTiles.GetLength(1);
+                    islandHeight = islandTiles.GetLength(0);
                     break;
                 case 2:
+                    islandTiles = StructureData.mediumIsland;
+                    islandWidth = islandTiles.GetLength(1);
+                    islandHeight = islandTiles.GetLength(0);
                     break;
                 default:
                     System.Console.WriteLine("Invalid Island Type! Generating default");
@@ -47,13 +53,24 @@ namespace HeavensAbove.Structures
         {
             if(isRand)
             {
-                offsetX += WorldGen.genRand.Next(0, Main.maxTilesX / 4);
+                // Picks a point on the first half of the map
+                offsetX += WorldGen.genRand.Next(0, Main.maxTilesX /2);
+                // Decides if it should be on the right side of the map
                 if (WorldGen.genRand.NextBool())
                 {
                     offsetX = Main.maxTilesX - offsetX;
+                    // Ensures the island will be on the map in full since it starts on top left corner
+                    offsetX -= islandWidth;
                 }
 
-                offsetY = (int)Main.maxTilesY / 2 + WorldGen.genRand.Next(0, Main.maxTilesY / 4);
+                // Picks a point in the middle half of the world
+                offsetY =  WorldGen.genRand.Next(Main.maxTilesY / 4, Main.maxTilesY * 3 / 4);
+                // If the island will generate outside of the Y bounds, put it back on the map
+                if(offsetY + islandHeight > Main.maxTilesY)
+                {
+                    offsetY = Main.maxTilesY - islandHeight;
+                }
+                System.Console.WriteLine("Placing an Island at: " + offsetX + " " + offsetY);
             }
             else
             {

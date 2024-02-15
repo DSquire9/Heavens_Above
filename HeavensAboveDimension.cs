@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using SubworldLibrary;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria;
@@ -17,11 +16,15 @@ namespace Heavens_Above
         // World Height
         public override int Height => 1000;
 
+        public static int maxIslands = 50;
+
         // World Save Toggle
         public override bool ShouldSave => true;
 
         // Prevent Player saving toggle
         public override bool NoPlayerSaving => false;
+
+        public static List<Island> islands = new List<Island>();
 
         public override List<GenPass> Tasks => new List<GenPass>()
     {
@@ -41,18 +44,6 @@ namespace Heavens_Above
             progress.Message = "Generating terrain"; // Sets the text displayed for this pass
             Main.worldSurface = Main.maxTilesY - 42; // Hides the underground layer just out of bounds
             Main.rockLayer = Main.maxTilesY + 100; // Hides the cavern layer way out of bounds
-
-/*            for (int i = 0; i < Main.maxTilesX; i++)
-            {
-                for (int j = Main.maxTilesY / 2+2; j < Main.maxTilesY; j++)
-                {
-                    progress.Set((j + i * Main.maxTilesY) / (float)(Main.maxTilesX * Main.maxTilesY)); // Controls the progress bar, should only be set between 0f and 1f
-                    Tile tile = Main.tile[i, j];
-                    tile.HasTile = true;
-                    tile.TileType = TileID.Dirt;
-                }
-            }*/
-
         }
     }
 
@@ -63,10 +54,15 @@ namespace Heavens_Above
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
             progress.Message = "Generating Islands";
-            Island isl = new Island(0);
+            // Guarantees the player spawns on a weird little island despite any random gen
+            Island isl = new Island(-1);
             isl.Generate(false);
-            Island isl2 = new Island(-1,15);
-            isl2.Generate(false);
+
+            for(int i = 0; i < HeavensAboveDimension.maxIslands; i++)
+            {
+                HeavensAboveDimension.islands.Add(new Island(WorldGen.genRand.Next(0, 3)));
+                HeavensAboveDimension.islands[i].Generate(true);
+;           }
         }
     }
     public class UpdateSubworldSystem : ModSystem
