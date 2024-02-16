@@ -12,11 +12,11 @@ namespace Heavens_Above
     public class HeavensAboveDimension : Subworld
     {
         // World Width
-        public override int Width => 1000;
+        public override int Width => 2000;
         // World Height
-        public override int Height => 1000;
+        public override int Height => 2000;
 
-        public static int maxIslands = 50;
+        public static int maxIslands = 20;
 
         // World Save Toggle
         public override bool ShouldSave => true;
@@ -29,7 +29,8 @@ namespace Heavens_Above
         public override List<GenPass> Tasks => new List<GenPass>()
     {
         new WorldGenPass(),
-        new IslandGenPass()
+        new IslandGenPass(),
+        new TreePass()
     };
     }
 
@@ -49,22 +50,34 @@ namespace Heavens_Above
 
     public class IslandGenPass : GenPass
     {
-        public IslandGenPass() : base("Islands", 1) { }
+        public IslandGenPass() : base("Terrain", 1) { }
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
             progress.Message = "Generating Islands";
             // Guarantees the player spawns on a weird little island despite any random gen
-            Island isl = new Island(-1);
+            Island isl = new Island(0);
             isl.Generate(false);
 
-            for(int i = 0; i < HeavensAboveDimension.maxIslands; i++)
+            for (int i = 0; i < HeavensAboveDimension.maxIslands; i++)
             {
                 HeavensAboveDimension.islands.Add(new Island(WorldGen.genRand.Next(0, 3)));
                 HeavensAboveDimension.islands[i].Generate(true);
-;           }
+            }
         }
     }
+
+    // Creates trees on grass blocks
+    public class TreePass : GenPass
+    {
+        public TreePass() : base("Planting Trees", 1) { }
+        protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+        {
+            progress.Message = "Planting Trees";
+            WorldGen.AddTrees(false);
+        }
+    }
+
     public class UpdateSubworldSystem : ModSystem
     {
         public override void PreUpdateWorld()
