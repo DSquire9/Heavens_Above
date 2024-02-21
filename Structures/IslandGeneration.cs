@@ -40,6 +40,15 @@ namespace HeavensAbove.Structures
             }
         }
 
+        public int GetMiddleX()
+        {
+            return offsetX;
+        }
+        public int GetMiddleY()
+        {
+            return offsetY;
+        }
+
         // Currently generates a dirt island based on the island size type
         public void Generate(bool isRand)
         {
