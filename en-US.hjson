@@ -4,5 +4,12 @@ Mods: {
 			"Leave SubWorld.DisplayName": Leave  Sub World
 			"Enter SubWorld.DisplayName": Enter  Sub World
 		}
+
+		Biomes: {
+			HeavenBiome: {
+				DisplayName: Heaven Biome
+				TownNPCDialogueName: the Heaven Biome
+			}
+		}
 	}
 }

@@ -25,6 +25,8 @@ namespace Heavens_Above
         // Prevent Player saving toggle
         public override bool NoPlayerSaving => false;
 
+        public override string Name => "HeavensAbove";
+
         public static List<Island> islands = new List<Island>();
 
         public override List<GenPass> Tasks => new List<GenPass>()
