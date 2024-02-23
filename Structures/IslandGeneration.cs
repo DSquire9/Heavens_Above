@@ -5,6 +5,7 @@ using ReLogic.Utilities;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.GameContent.Biomes;
+using Terraria.ModLoader;
 
 namespace HeavensAbove.Structures
 {
@@ -55,7 +56,7 @@ namespace HeavensAbove.Structures
             if (isRand)
             {
                 // Picks a point on the first half of the map
-                offsetX += WorldGen.genRand.Next(Main.maxTilesX/5, Main.maxTilesX * 7/15);
+                offsetX += WorldGen.genRand.Next(Main.maxTilesX/5, Main.maxTilesX * 5/12);
                 // Decides if it should be on the right side of the map
                 if (WorldGen.genRand.NextBool())
                 {
@@ -97,9 +98,9 @@ namespace HeavensAbove.Structures
                     int islandScale = 5;
                     int islandRadius = (islandWidth / 2) / islandScale;
 
-                    WorldUtils.Gen(point, new Shapes.Slime(islandRadius, islandScale, WorldGen.genRand.Next(1, 3) * 0.6), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.SetTile(0), new Actions.SetFrames(frameNeighbors: true).Output(shapeData)));
-                    WorldUtils.Gen(point, new ModShapes.OuterOutline(shapeData), Actions.Chain(new Actions.SetTile(2), new Actions.SetFrames(frameNeighbors: true)));
-                    WorldUtils.Gen(point, new ModShapes.All(shapeData), Actions.Chain(new Modifiers.Offset(0, -1), new Modifiers.OnlyTiles(2), new Modifiers.Offset(0, -1), new ActionGrass()));
+                    WorldUtils.Gen(point, new Shapes.Slime(islandRadius, islandScale, WorldGen.genRand.Next(1, 3) * 0.6), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.SetTile((ushort)ModContent.TileType<Heavens_Above.AetherDirt>()), new Actions.SetFrames(frameNeighbors: true).Output(shapeData)));
+                    WorldUtils.Gen(point, new ModShapes.OuterOutline(shapeData), Actions.Chain(new Actions.SetTile((ushort)ModContent.TileType<Heavens_Above.AetherGrass>()), new Actions.SetFrames(frameNeighbors: true)));
+                    //WorldUtils.Gen(point, new ModShapes.All(shapeData), Actions.Chain(new Modifiers.Offset(0, -1), new Modifiers.OnlyTiles(2), new Modifiers.Offset(0, -1), new ActionGrass()));
 
                     WorldUtils.Gen(point5, new Shapes.Rectangle(islandWidth, WorldGen.genRand.Next(15, islandHeight)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.SetTile(TileID.Cloud), new Actions.SetFrames(frameNeighbors: true).Output(shapeData)));
                     WorldUtils.Gen(point2, new Shapes.Mound(WorldGen.genRand.Next(4, 9), WorldGen.genRand.Next(10, 25)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
@@ -122,11 +123,11 @@ namespace HeavensAbove.Structures
                     islandScale = 5;
                     islandRadius = (islandWidth / 2) / islandScale;
 
-                    WorldUtils.Gen(point, new Shapes.Slime(islandRadius, islandScale, WorldGen.genRand.Next(1, 3) * 0.6), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.SetTile(0), new Actions.SetFrames(frameNeighbors: true).Output(shapeData)));
-                    WorldUtils.Gen(point, new ModShapes.OuterOutline(shapeData), Actions.Chain(new Actions.SetTile(2), new Actions.SetFrames(frameNeighbors: true)));
-                    WorldUtils.Gen(point, new ModShapes.All(shapeData), Actions.Chain(new Modifiers.Offset(0, -1), new Modifiers.OnlyTiles(2), new Modifiers.Offset(0, -1), new ActionGrass()));
+                    WorldUtils.Gen(point, new Shapes.Slime(islandRadius, islandScale, WorldGen.genRand.Next(1, 3) * 0.6), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.SetTile((ushort)ModContent.TileType<Heavens_Above.AetherDirt>()), new Actions.SetFrames(frameNeighbors: true).Output(shapeData)));
+                    WorldUtils.Gen(point, new ModShapes.OuterOutline(shapeData), Actions.Chain(new Actions.SetTile((ushort)ModContent.TileType<Heavens_Above.AetherGrass>()), new Actions.SetFrames(frameNeighbors: true)));
+                    //WorldUtils.Gen(point, new ModShapes.All(shapeData), Actions.Chain(new Modifiers.Offset(0, -1), new Modifiers.OnlyTiles(2), new Modifiers.Offset(0, -1), new ActionGrass()));
 
-                    WorldUtils.Gen(point5, new Shapes.Rectangle(islandWidth, WorldGen.genRand.Next(45, islandHeight)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.SetTile(0), new Actions.SetFrames(frameNeighbors: true).Output(shapeData)));
+                    WorldUtils.Gen(point5, new Shapes.Rectangle(islandWidth, WorldGen.genRand.Next(45, islandHeight)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.SetTile(TileID.Cloud), new Actions.SetFrames(frameNeighbors: true).Output(shapeData)));
                     WorldUtils.Gen(point2, new Shapes.Mound(WorldGen.genRand.Next(15, 25), WorldGen.genRand.Next(30, 45)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
                     WorldUtils.Gen(point3, new Shapes.Mound(WorldGen.genRand.Next(12, 25), WorldGen.genRand.Next(40, 55)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
                     WorldUtils.Gen(point4, new Shapes.Mound(WorldGen.genRand.Next(8, 20), WorldGen.genRand.Next(20, 35)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
@@ -148,11 +149,11 @@ namespace HeavensAbove.Structures
                     islandScale = 5;
                     islandRadius = (islandWidth / 2) / islandScale;
 
-                    WorldUtils.Gen(point, new Shapes.Slime(islandRadius, islandScale, WorldGen.genRand.Next(1,3)*0.6), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.SetTile(0), new Actions.SetFrames(frameNeighbors: true).Output(shapeData)));
-                    WorldUtils.Gen(point, new ModShapes.OuterOutline(shapeData), Actions.Chain(new Actions.SetTile(2), new Actions.SetFrames(frameNeighbors: true)));
-                    WorldUtils.Gen(point, new ModShapes.All(shapeData), Actions.Chain(new Modifiers.Offset(0, -1), new Modifiers.OnlyTiles(2), new Modifiers.Offset(0, -1), new ActionGrass()));
+                    WorldUtils.Gen(point, new Shapes.Slime(islandRadius, islandScale, WorldGen.genRand.Next(1,3)*0.6), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.SetTile((ushort)ModContent.TileType<Heavens_Above.AetherDirt>()), new Actions.SetFrames(frameNeighbors: true).Output(shapeData)));
+                    WorldUtils.Gen(point, new ModShapes.OuterOutline(shapeData), Actions.Chain(new Actions.SetTile((ushort)ModContent.TileType<Heavens_Above.AetherGrass>()), new Actions.SetFrames(frameNeighbors: true)));
+                    //WorldUtils.Gen(point, new ModShapes.All(shapeData), Actions.Chain(new Modifiers.Offset(0, -1), new Modifiers.OnlyTiles(), new Modifiers.Offset(0, -1), new ActionGrass()));
 
-                    WorldUtils.Gen(point5, new Shapes.Rectangle(islandWidth, WorldGen.genRand.Next(40, 70)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.SetTile(0), new Actions.SetFrames(frameNeighbors: true).Output(shapeData)));
+                    WorldUtils.Gen(point5, new Shapes.Rectangle(islandWidth, WorldGen.genRand.Next(40, 70)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.SetTile(TileID.Cloud), new Actions.SetFrames(frameNeighbors: true).Output(shapeData)));
                     WorldUtils.Gen(point2, new Shapes.Mound(WorldGen.genRand.Next(18, 28), WorldGen.genRand.Next(40, 55)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
                     WorldUtils.Gen(point3, new Shapes.Mound(WorldGen.genRand.Next(40, 55), WorldGen.genRand.Next(50, 65)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
                     WorldUtils.Gen(point4, new Shapes.Mound(WorldGen.genRand.Next(20, 25), WorldGen.genRand.Next(20, 35)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));

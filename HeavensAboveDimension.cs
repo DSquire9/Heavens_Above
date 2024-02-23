@@ -40,6 +40,13 @@ namespace Heavens_Above
         new StructurePass(),
         new TreePass()
     };
+
+        // Sets the time to the middle of the day whenever the subworld loads
+        public override void OnLoad()
+        {
+            Main.dayTime = true;
+            Main.time = 27000;
+        }
     }
 
     // Currently generates half the world as dirt below the player
