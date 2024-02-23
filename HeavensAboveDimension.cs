@@ -19,6 +19,8 @@ namespace Heavens_Above
 
         public static int maxIslands = 20;
 
+        public static int numStructures = 3;
+
         // World Save Toggle
         public override bool ShouldSave => true;
 
@@ -28,6 +30,8 @@ namespace Heavens_Above
         public override string Name => "HeavensAbove";
 
         public static List<Island> islands = new List<Island>();
+
+        public static List<Structure> structures = new List<Structure>();
 
         public override List<GenPass> Tasks => new List<GenPass>()
     {
@@ -78,33 +82,37 @@ namespace Heavens_Above
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
-            // Gets a random island
-            Island islPlace = HeavensAboveDimension.islands[WorldGen.genRand.Next(0, HeavensAboveDimension.maxIslands)];
-
-            // Gets its centered placement
-            int xPlacement = islPlace.GetMiddleX() - StructureData.testStructure.GetLength(1);
-            int yPlacement = islPlace.GetMiddleY() - StructureData.testStructure.GetLength(0) / 2;
-
-            System.Console.WriteLine("Placing a Structure at: " + xPlacement + " " + yPlacement);
-
-            // Checks to see if it can be placed on top of the island
-            Tile t = Main.tile[xPlacement, yPlacement];
-            while (t.HasTile)
+            List<Island> islandsWithStrucutres = new List<Island>();
+            for(int i = 0; i < HeavensAboveDimension.numStructures; i++)
             {
-                //System.Console.WriteLine("Checking for empty tile!");
-                yPlacement--;
-                t = Main.tile[xPlacement, yPlacement];
-            }
-
-            // Generates the strucutre
-            for (int i = 0; i < StructureData.testStructure.GetLength(1);i++)
-            {
-                for (int j = 0; j < StructureData.testStructure.GetLength(0); j++)
+                // Gets a random island
+                Island islPlace = null;
+                do
                 {
-                    Tile tile = Main.tile[xPlacement+i, yPlacement+j];
-                    tile.HasTile = true;
-                    tile.TileType = (ushort)StructureData.testStructure[i,j];
+                    islPlace = HeavensAboveDimension.islands[WorldGen.genRand.Next(0, HeavensAboveDimension.maxIslands)];
                 }
+                while (islandsWithStrucutres.Contains(islPlace));
+
+                islandsWithStrucutres.Add(islPlace);
+
+                // Gets its centered placement
+                int xPlacement = islPlace.GetMiddleX() - StructureData.testStructure.GetLength(1);
+                int yPlacement = islPlace.GetMiddleY() + StructureData.testStructure.GetLength(0);
+
+                System.Console.WriteLine("Placing a Structure at: " + xPlacement + " " + yPlacement);
+
+                // Checks to see if it can be placed on top of the island
+                Tile t = Main.tile[xPlacement, yPlacement];
+                while (t.HasTile)
+                {
+                    //System.Console.WriteLine("Checking for empty tile!");
+                    yPlacement--;
+                    t = Main.tile[xPlacement, yPlacement];
+                }
+
+                HeavensAboveDimension.structures.Add(new Structure(xPlacement, yPlacement, 0));
+
+                HeavensAboveDimension.structures[i].Generate();
             }
         }
     }

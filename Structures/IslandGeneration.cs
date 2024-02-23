@@ -55,7 +55,7 @@ namespace HeavensAbove.Structures
             if (isRand)
             {
                 // Picks a point on the first half of the map
-                offsetX += WorldGen.genRand.Next(Main.maxTilesX/5, Main.maxTilesX * 5/12);
+                offsetX += WorldGen.genRand.Next(Main.maxTilesX/5, Main.maxTilesX * 7/15);
                 // Decides if it should be on the right side of the map
                 if (WorldGen.genRand.NextBool())
                 {
