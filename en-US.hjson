@@ -11,5 +11,12 @@ Mods: {
 				TownNPCDialogueName: the Heaven Biome
 			}
 		}
+
+		Items: {
+			AetherDirt: {
+				DisplayName: Aether Dirt
+				Tooltip: ""
+			}
+		}
 	}
 }

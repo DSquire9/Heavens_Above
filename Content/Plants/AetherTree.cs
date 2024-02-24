@@ -6,7 +6,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace HeavensAbove
+namespace HeavensAbove.Content.Plants
 {
     public class AetherTree : ModTree
     {
@@ -24,7 +24,7 @@ namespace HeavensAbove
         public override void SetStaticDefaults()
         {
             // Makes Example Tree grow on ExampleBlock
-            GrowsOnTileId = new int[1] { ModContent.TileType<Heavens_Above.AetherGrass>()};
+            GrowsOnTileId = new int[1] { ModContent.TileType<Heavens_Above.Content.Tiles.AetherGrass>()};
         }
 
         // This is the primary texture for the trunk. Branches and foliage use different settings.
@@ -58,15 +58,16 @@ namespace HeavensAbove
 
         public override int DropWood()
         {
-            return TileID.BorealWood;
+            return ItemID.BorealWood;
         }
 
-        public override bool Shake(int x, int y, ref bool createLeaves)
+        // Overrides vanilla tree shake drops
+/*        public override bool Shake(int x, int y, ref bool createLeaves)
         {
             //Item.NewItem(WorldGen.GetItemSource_FromTreeShake(x, y), new Vector2(x, y) * 16, ModContent.ItemType<Items.Placeable.ExampleBlock>());
             Item.NewItem(WorldGen.GetItemSource_FromTreeShake(x, y), new Vector2(x, y) * 16, ItemID.Grapefruit);
             return false;
-        }
+        }*/
 
         public override int TreeLeaf()
         {

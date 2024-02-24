@@ -1,20 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria.ModLoader;
 using Terraria;
+using Terraria.ModLoader;
 
-namespace Heavens_Above
+namespace Heavens_Above.Content.Tiles
 {
-    public class AetherGrass : ModTile
+    public class AetherStone : ModTile
     {
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
             Main.tileBlockLight[Type] = true;
+            Main.tileStone[Type] = true;
 
             //DustType = ModContent.DustType<Sparkle>();
 
             AddMapEntry(new Color(200, 200, 200));
+            RegisterItemDrop(ModContent.ItemType<Items.AetherStone>(), null);
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

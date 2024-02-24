@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 using Terraria;
 
-namespace Heavens_Above
+namespace Heavens_Above.Content.Tiles
 {
     public class AetherDirt : ModTile
     {
@@ -12,9 +12,9 @@ namespace Heavens_Above
             Main.tileMergeDirt[Type] = true;
             Main.tileBlockLight[Type] = true;
 
-            //DustType = ModContent.DustType<Sparkle>();
-
             AddMapEntry(new Color(200, 200, 200));
+
+            RegisterItemDrop(ModContent.ItemType<Items.AetherDirt>(),null);
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
