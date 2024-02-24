@@ -1,4 +1,14 @@
 Keybinds: {
-	"Leave SubWorld.DisplayName": Leave  Sub World
-	"Enter SubWorld.DisplayName": Enter  Sub World
+}
+
+Buffs: {
+	AquaRing: {
+		Description: Mods.HeavensAbove.Buffs.AquaRing.Description
+		DisplayName: Aqua Ring
+	}
+}
+
+NPCs: {
+	AetherShopKeep.DisplayName: Aether Shop Keep
+	QuestGuy.DisplayName: Quest Guy
 }

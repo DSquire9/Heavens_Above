@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework.Input;
 using Terraria.ModLoader;
 
-namespace Heavens_Above
+namespace HeavensAbove
 {
 	public class HeavensAbove : Mod
 	{

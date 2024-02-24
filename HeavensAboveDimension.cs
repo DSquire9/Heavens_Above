@@ -8,7 +8,7 @@ using Terraria.WorldBuilding;
 using HeavensAbove.Structures;
 using Terraria.ID;
 
-namespace Heavens_Above
+namespace HeavensAbove
 {
     public class HeavensAboveDimension : Subworld
     {

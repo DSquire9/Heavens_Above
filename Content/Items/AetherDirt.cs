@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Heavens_Above.Content.Items
+namespace HeavensAbove.Content.Items
 {
     public class AetherDirt : ModItem
     {

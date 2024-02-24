@@ -2,7 +2,7 @@
 using Terraria.GameInput;
 using Terraria.ModLoader;
 
-namespace Heavens_Above
+namespace HeavensAbove
 {
     class PlayerOverrides : ModPlayer
     {

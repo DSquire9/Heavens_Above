@@ -1,7 +1,7 @@
 ﻿using Terraria.ModLoader;
 using Terraria;
 
-namespace Heavens_Above.Content.Items
+namespace HeavensAbove.Content.Items
 {
     internal class AetherStone : ModItem
     {

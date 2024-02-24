@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Heavens_Above.Content.Tiles
+namespace HeavensAbove.Content.Tiles
 {
     public class AetherStone : ModTile
     {

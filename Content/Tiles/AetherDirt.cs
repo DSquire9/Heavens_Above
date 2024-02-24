@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 using Terraria;
 
-namespace Heavens_Above.Content.Tiles
+namespace HeavensAbove.Content.Tiles
 {
     public class AetherDirt : ModTile
     {

@@ -1,5 +1,5 @@
 Mods: {
-	Heavens_Above: {
+	HeavensAbove: {
 		Keybinds: {
 			"Leave SubWorld.DisplayName": Leave  Sub World
 			"Enter SubWorld.DisplayName": Enter  Sub World
@@ -15,6 +15,61 @@ Mods: {
 		Items: {
 			AetherDirt: {
 				DisplayName: Aether Dirt
+				Tooltip: ""
+			}
+
+			IcarianWings: {
+				Tooltip: ""
+				DisplayName: Icarian Wings
+			}
+
+			AetherStone: {
+				DisplayName: Aether Stone
+				Tooltip: ""
+			}
+
+			AetheriumBreastplate: {
+				DisplayName: Aetherium Breastplate
+				Tooltip: ""
+			}
+
+			AetheriumGreaves: {
+				DisplayName: Aetherium Greaves
+				Tooltip: ""
+			}
+
+			AetheriumHelmet: {
+				DisplayName: Aetherium Helmet
+				Tooltip: ""
+			}
+
+			AetherWoodBreastplate: {
+				DisplayName: Aether Wood Breastplate
+				Tooltip: ""
+			}
+
+			AetherWoodGreaves: {
+				DisplayName: Aether Wood Greaves
+				Tooltip: ""
+			}
+
+			AetherWoodHelmet: {
+				DisplayName: Aether Wood Helmet
+				Tooltip: ""
+			}
+
+			AetherPotion: {
+				DisplayName: Aether Potion
+				Tooltip: ""
+			}
+
+			AetheriumBlade: {
+				DisplayName: Aetherium Blade
+				Tooltip: ""
+			}
+
+			AetheriumBow: {
+				DisplayName: Aetherium Bow
 				Tooltip: ""
 			}
 		}
