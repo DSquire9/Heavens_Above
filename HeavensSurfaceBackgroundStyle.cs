@@ -30,17 +30,17 @@ namespace HeavensAbove
 
         public override int ChooseFarTexture()
         {
-            return BackgroundTextureLoader.GetBackgroundSlot(Mod, "Assets/Textures/Backgrounds/SurfaceClose");
+            return BackgroundTextureLoader.GetBackgroundSlot(Mod, "Assets/Textures/Backgrounds/background_far");
         }
 
         public override int ChooseMiddleTexture()
         {
-           return BackgroundTextureLoader.GetBackgroundSlot(Mod, "Assets/Textures/Backgrounds/SurfaceClose");
+           return BackgroundTextureLoader.GetBackgroundSlot(Mod, "Assets/Textures/Backgrounds/background_mid");
         }
 
         public override int ChooseCloseTexture(ref float scale, ref double parallax, ref float a, ref float b)
         {
-            return BackgroundTextureLoader.GetBackgroundSlot(Mod, "Assets/Textures/Backgrounds/SurfaceClose");
+            return BackgroundTextureLoader.GetBackgroundSlot(Mod, "Assets/Textures/Backgrounds/background_near");
         }
     }
 }
