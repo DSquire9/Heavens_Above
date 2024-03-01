@@ -58,6 +58,11 @@ Mods: {
 				Tooltip: ""
 			}
 
+			AetherWood: {
+				DisplayName: Aether Wood
+				Tooltip: ""
+			}
+
 			AetherPotion: {
 				DisplayName: Aether Potion
 				Tooltip: ""
@@ -70,6 +75,21 @@ Mods: {
 
 			AetheriumBow: {
 				DisplayName: Aetherium Bow
+				Tooltip: ""
+			}
+
+			AetherBloom: {
+				DisplayName: Aether Bloom
+				Tooltip: ""
+			}
+
+			AetherBloomSeeds: {
+				DisplayName: Aether Bloom Seeds
+				Tooltip: ""
+			}
+
+			AetherWoodWall: {
+				DisplayName: Aether Wood Wall
 				Tooltip: ""
 			}
 		}

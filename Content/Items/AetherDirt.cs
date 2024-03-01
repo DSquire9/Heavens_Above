@@ -9,8 +9,6 @@ namespace HeavensAbove.Content.Items
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.AetherDirt>());
-            Item.width = 12;
-            Item.height = 12;
         }
     }
 }

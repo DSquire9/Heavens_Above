@@ -58,7 +58,7 @@ namespace HeavensAbove.Content.Plants
 
         public override int DropWood()
         {
-            return ItemID.BorealWood;
+            return ModContent.ItemType<Items.AetherWood>();
         }
 
         // Overrides vanilla tree shake drops

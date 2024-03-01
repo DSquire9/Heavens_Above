@@ -1,13 +1,12 @@
 ﻿using Terraria.ModLoader;
-using Terraria;
 
 namespace HeavensAbove.Content.Items
 {
-    public class AetherStone : ModItem
+    public class AetherWoodWall : ModItem
     {
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.AetherStone>());
+            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.AetherWoodWall>());
         }
     }
 }

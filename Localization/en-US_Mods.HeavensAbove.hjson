@@ -12,3 +12,5 @@ NPCs: {
 	AetherShopKeep.DisplayName: Aether Shop Keep
 	QuestGuy.DisplayName: Quest Guy
 }
+
+Tiles.AetherBloom.MapEntry: Aether Bloom
