@@ -27,6 +27,8 @@ namespace HeavensAbove
         // Prevent Player saving toggle
         public override bool NoPlayerSaving => false;
 
+        public override bool NormalUpdates => true;
+
         public override string Name => "HeavensAbove";
 
         public static List<Island> islands = new List<Island>();
