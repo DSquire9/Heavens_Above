@@ -9,7 +9,7 @@ namespace HeavensAbove.Content.Tiles
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = true;
-            Main.tileMergeDirt[Type] = true;
+            Main.tileMerge[Type][ModContent.TileType<Tiles.AetherDirt>()] = true;
             Main.tileBlockLight[Type] = true;
 
             AddMapEntry(new Color(200, 200, 200));
