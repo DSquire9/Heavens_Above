@@ -16,6 +16,9 @@ NPCs: {
 	Swet.DisplayName: Swet
 	Valkyrie.DisplayName: Valkyrie
 	Zephyr.DisplayName: Zephyr
+	LabyrinthEye.DisplayName: Labyrinth Eye
+	SunSpirit.DisplayName: Sun Spirit
+	ValkyrieQueen.DisplayName: Valkyrie Queen
 }
 
 Tiles.AetherBloom.MapEntry: Aether Bloom
