@@ -9,6 +9,11 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Content\Buffs\AquaRing.png" />
+    <None Remove="Content\Enemies\Cockatrice.png" />
+    <None Remove="Content\Enemies\Sheepuff.png" />
+    <None Remove="Content\Enemies\Swet.png" />
+    <None Remove="Content\Enemies\Valkyrie.png" />
+    <None Remove="Content\Enemies\Zephyr.png" />
     <None Remove="Content\Items\Accessories\IcarianWings.png" />
     <None Remove="Content\Items\Accessories\IcarianWings_Wings.png" />
     <None Remove="Content\Items\Armor\AetheriumBreastplate.png" />
@@ -46,7 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Enemies\" />
     <Folder Include="Content\Bosses\" />
   </ItemGroup>
 </Project>
