@@ -11,6 +11,11 @@ Buffs: {
 NPCs: {
 	AetherShopKeep.DisplayName: Aether Shop Keep
 	QuestGuy.DisplayName: Quest Guy
+	Cockatrice.DisplayName: Cockatrice
+	Sheepuff.DisplayName: Sheepuff
+	Swet.DisplayName: Swet
+	Valkyrie.DisplayName: Valkyrie
+	Zephyr.DisplayName: Zephyr
 }
 
 Tiles.AetherBloom.MapEntry: Aether Bloom
