@@ -73,7 +73,7 @@ namespace HeavensAbove.Structures
                 {
                     offsetY = Main.maxTilesY - islandHeight;
                 }
-                System.Console.WriteLine("Placing an Island at: " + offsetX + " " + offsetY);
+                //System.Console.WriteLine("Placing an Island at: " + offsetX + " " + offsetY);
             }
             else
             {

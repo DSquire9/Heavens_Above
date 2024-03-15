@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.WorldBuilding;
 using HeavensAbove.Structures;
 using Terraria.ID;
+using Terraria.Graphics.Effects;
 
 namespace HeavensAbove
 {
@@ -69,6 +70,7 @@ namespace HeavensAbove
 
             for (int i = 0; i < HeavensAboveDimension.maxIslands; i++)
             {
+                System.Console.WriteLine("Progress: " + (double)i / HeavensAboveDimension.maxIslands);
                 progress.Set((double)i / HeavensAboveDimension.maxIslands);
                 HeavensAboveDimension.islands.Add(new Island(WorldGen.genRand.Next(0, 3)));
                 HeavensAboveDimension.islands[i].Generate(true);
@@ -132,6 +134,12 @@ namespace HeavensAbove
 
     public class UpdateSubworldSystem : ModSystem
     {
+        public static bool WasInSubworldLastFrame
+        {
+            get;
+            private set;
+        }
+
         public override void PreUpdateWorld()
         {
             if (SubworldSystem.IsActive<HeavensAboveDimension>())
@@ -153,6 +161,11 @@ namespace HeavensAbove
                     Liquid.UpdateLiquid();
                     Liquid.skipCount = 0;
                 }
+                WasInSubworldLastFrame = true;
+            }
+            else
+            {
+                WasInSubworldLastFrame = false;
             }
         }
     }
