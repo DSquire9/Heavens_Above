@@ -8,6 +8,12 @@ using Terraria.WorldBuilding;
 using HeavensAbove.Structures;
 using Terraria.ID;
 using Terraria.Graphics.Effects;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent;
+using Terraria.Localization;
+using ReLogic.Graphics;
+using Terraria.GameInput;
 
 namespace HeavensAbove
 {
@@ -43,6 +49,8 @@ namespace HeavensAbove
         new TreePass()
     };
 
+        private Texture2D GenerationBackground = ModContent.Request<Texture2D>($"HeavensAbove/Assets/Textures/Backgrounds/background_far").Value;
+
         public double weight = 0;
 
         // Sets the time to the middle of the day whenever the subworld loads
@@ -50,6 +58,34 @@ namespace HeavensAbove
         {
             Main.dayTime = true;
             Main.time = 27000;
+        }
+
+        public override void DrawSetup(GameTime gameTime)
+        {
+            PlayerInput.SetZoom_UI();
+            //Main.instance.GraphicsDevice.Clear(Color.Black);
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
+            DrawMenu(gameTime);
+            Main.DrawCursor(Main.DrawThickCursor());
+            Main.spriteBatch.End();
+        }
+
+        public override void DrawMenu(GameTime gameTime)
+        {
+            System.Console.WriteLine("DrawingMenu");
+            // Give text about how the player's test when entering the garden.
+            // When exiting, the regular load details text is displayed.
+            var font = FontAssets.DeathText.Value;
+            string text = Main.statusText;
+            Color textColor = new Color(255, 255, 255);
+
+            // Draw a pure-white background. Immediate loading is used for the texture because without it there's a tiny, jarring delay before the white background appears where the regular
+            // title screen is revealed momentarily.
+            Vector2 pixelScale = new Vector2(1.0f,1.0f);//Main.ScreenSize.ToVector2() * 1.45f / GenerationBackground.Size();
+            Main.spriteBatch.Draw(GenerationBackground, Main.ScreenSize.ToVector2() * 0.5f, null, Color.White, 0f, GenerationBackground.Size() * 0.5f, pixelScale, SpriteEffects.None, 0f);
+
+            Vector2 drawPosition = Main.ScreenSize.ToVector2() * 0.5f - font.MeasureString(text) * 0.5f;
+            Main.spriteBatch.DrawString(font, text, drawPosition, textColor);
         }
     }
 
@@ -61,7 +97,6 @@ namespace HeavensAbove
         {
             Main.worldSurface = Main.maxTilesY - 42; // Hides the underground layer just out of bounds
             Main.rockLayer = Main.maxTilesY + 100; // Hides the cavern layer way out of bounds
-
             progress.Message = "Generating Islands";
             // Guarantees the player spawns on a weird little island despite any random gen
             Island isl = new Island(0);
@@ -70,8 +105,7 @@ namespace HeavensAbove
 
             for (int i = 0; i < HeavensAboveDimension.maxIslands; i++)
             {
-                System.Console.WriteLine("Progress: " + (double)i / HeavensAboveDimension.maxIslands);
-                progress.Set((double)i / HeavensAboveDimension.maxIslands);
+                Main.statusText = "Generating Islands: " + (int)((double)i/HeavensAboveDimension.maxIslands*100) +"%";
                 HeavensAboveDimension.islands.Add(new Island(WorldGen.genRand.Next(0, 3)));
                 HeavensAboveDimension.islands[i].Generate(true);
             }
@@ -84,6 +118,7 @@ namespace HeavensAbove
 
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
+            Main.statusText = "Generating Dungeons";
             progress.Message = "Generating Dungeons";
             List<Island> islandsWithStrucutres = new List<Island>();
             for(int i = 0; i < HeavensAboveDimension.numStructures; i++)
@@ -127,6 +162,7 @@ namespace HeavensAbove
         public TreePass() : base("Planting Trees", 1) { }
         protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
         {
+            Main.statusText = "Planting Trees";
             progress.Message = "Planting Trees";
             WorldGen.AddTrees(false);
         }
