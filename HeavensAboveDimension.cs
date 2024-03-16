@@ -49,8 +49,7 @@ namespace HeavensAbove
         new TreePass()
     };
 
-        private Texture2D GenerationBackground = ModContent.Request<Texture2D>($"HeavensAbove/Assets/Textures/Backgrounds/background_far").Value;
-
+        private Texture2D GenerationBackground;
         public double weight = 0;
 
         // Sets the time to the middle of the day whenever the subworld loads
@@ -63,8 +62,10 @@ namespace HeavensAbove
         public override void DrawSetup(GameTime gameTime)
         {
             PlayerInput.SetZoom_UI();
-            //Main.instance.GraphicsDevice.Clear(Color.Black);
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
+            // This line really should be on mod load.
+            GenerationBackground = ModContent.Request<Texture2D>($"HeavensAbove/Assets/Textures/Backgrounds/background_far").Value;
+            
+            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
             DrawMenu(gameTime);
             Main.DrawCursor(Main.DrawThickCursor());
             Main.spriteBatch.End();
@@ -72,7 +73,6 @@ namespace HeavensAbove
 
         public override void DrawMenu(GameTime gameTime)
         {
-            System.Console.WriteLine("DrawingMenu");
             // Give text about how the player's test when entering the garden.
             // When exiting, the regular load details text is displayed.
             var font = FontAssets.DeathText.Value;
@@ -81,7 +81,7 @@ namespace HeavensAbove
 
             // Draw a pure-white background. Immediate loading is used for the texture because without it there's a tiny, jarring delay before the white background appears where the regular
             // title screen is revealed momentarily.
-            Vector2 pixelScale = new Vector2(1.0f,1.0f);//Main.ScreenSize.ToVector2() * 1.45f / GenerationBackground.Size();
+            Vector2 pixelScale = Main.ScreenSize.ToVector2() * 1.45f / GenerationBackground.Size();
             Main.spriteBatch.Draw(GenerationBackground, Main.ScreenSize.ToVector2() * 0.5f, null, Color.White, 0f, GenerationBackground.Size() * 0.5f, pixelScale, SpriteEffects.None, 0f);
 
             Vector2 drawPosition = Main.ScreenSize.ToVector2() * 0.5f - font.MeasureString(text) * 0.5f;

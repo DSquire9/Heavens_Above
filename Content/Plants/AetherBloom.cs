@@ -35,8 +35,8 @@ namespace HeavensAbove.Content.Plants
             // We do not use this because our tile should only be spelunkable when it's fully grown. That's why we use the IsTileSpelunkable hook instead
             //Main.tileSpelunker[Type] = true;
 
-            // Do NOT use this, it causes many unintended side effects
-            //Main.tileAlch[Type] = true;
+            // Default is set to true, overriding this to prevent any minValue less than maxValue erros
+            Main.tileAlch[Type] = false;
 
             LocalizedText name = CreateMapEntryName();
             AddMapEntry(new Color(128, 128, 128), name);
