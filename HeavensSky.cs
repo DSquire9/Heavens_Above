@@ -86,15 +86,32 @@ namespace HeavensAbove
 
                 // Apply parallax effects.
                 int x = 0;
-                int y = (int)((-Main.screenPosition.Y + Main.screenHeight / 2 + Main.worldSurface * 0.35f * 16) * ScreenParallaxSpeed * 0.5f);
+                int y = (int)((-Main.screenPosition.Y + Main.screenHeight / 2 + Main.worldSurface * 0.35f * 16) * ScreenParallaxSpeed * 0.25f);
                 Texture2D backgroundTexture = BackgroundFrameTextures.Value;
 
                 // Loop the background horizontally.
                 for (int i = -2; i <= 2; i++)
                 {
-                    // Draw the base background.
-                    Vector2 layerPosition = new(Main.screenWidth * 0.5f - x + backgroundTexture.Width * i, y + ScreenParallaxSpeed * 1000f);
+
+                    // Cheating the sky system to make it NOT override the background style by having it parallax based on player height
+                    Vector2 layerPosition;
+                    if (Main.screenPosition.Y >= Main.worldSurface*0.35f*16 && Main.screenPosition.Y <= Main.worldSurface*8)
+                    {
+                        // Draw the base background.
+                        layerPosition = new(Main.screenWidth * 0.5f - x + backgroundTexture.Width * i, y + ScreenParallaxSpeed * 800f);
+                        
+                    }
+                    else if(Main.screenPosition.Y < Main.worldSurface * 0.35f * 16)
+                    {
+                        layerPosition = new(Main.screenWidth * 0.5f - x + backgroundTexture.Width * i, y);
+                    }
+                    else
+                    {
+                        y = (int)((-Main.screenPosition.Y + Main.worldSurface * 8) * ScreenParallaxSpeed * 0.4f);
+                        layerPosition = new(Main.screenWidth * 0.5f - x + backgroundTexture.Width * i, y- ScreenParallaxSpeed * 800f);
+                    }
                     spriteBatch.Draw(backgroundTexture, layerPosition - backgroundTexture.Size() * 0.5f, null, Main.ColorOfTheSkies, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
                 }
 
             }
