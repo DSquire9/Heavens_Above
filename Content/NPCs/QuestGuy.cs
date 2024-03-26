@@ -29,14 +29,7 @@ namespace HeavensAbove.Content.NPCs
         {
             //DisplayName automatically assigned from .lang files, but the commented line below is the normal approach.
             //DisplayName.SetDefault("Sten");
-            Main.npcFrameCount[NPC.type] = 25;
-            NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
-            NPCID.Sets.AttackFrameCount[NPC.type] = 4;
-            NPCID.Sets.DangerDetectRange[NPC.type] = 700;
-            NPCID.Sets.AttackType[NPC.type] = 0;
-            NPCID.Sets.AttackTime[NPC.type] = 90;
-            NPCID.Sets.AttackAverageChance[NPC.type] = 30;
-            NPCID.Sets.HatOffsetY[NPC.type] = 4;
+            
         }
 
         public override void SetDefaults()
@@ -48,11 +41,19 @@ namespace HeavensAbove.Content.NPCs
             NPC.aiStyle = 7;
             NPC.damage = 10;
             NPC.defense = 15;
-            NPC.lifeMax = 250;
+            NPC.lifeMax = 10000; // This is unreasonably high, just want to ensure this NPC never dies
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = 0.5f;
-            //NPC.animationType = NPCID.Guide;
+            Main.npcFrameCount[NPC.type] = 25;
+            NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
+            NPCID.Sets.AttackFrameCount[NPC.type] = 4;
+            NPCID.Sets.DangerDetectRange[NPC.type] = 700;
+            NPCID.Sets.AttackType[NPC.type] = 0;
+            NPCID.Sets.AttackTime[NPC.type] = 90;
+            NPCID.Sets.AttackAverageChance[NPC.type] = 30;
+            NPCID.Sets.HatOffsetY[NPC.type] = 4;
+            AnimationType = 22;
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -66,24 +67,31 @@ namespace HeavensAbove.Content.NPCs
 
         public override bool CanTownNPCSpawn(int numTownNPCs)
         {
-            //for (int k = 0; k < 255; k++)
-            //{
-            //    Player player = Main.player[k];
-            //    if (!player.active)
-            //    {
-            //        continue;
-            //    }
+            for (int k = 0; k < 255; k++)
+            {
+                Player player = Main.player[k];
+                if (!player.active)
+                {
+                    continue;
+                }
 
-            //    foreach (Item item in player.inventory)
-            //    {
-            //        if (item.type == ModContent.ItemType<ExampleItem>() || item.type == ModContent.ItemType<Items.Placeable.ExampleBlock>())
-            //        {
-            //            return true;
-            //        }
-            //    }
-            //}
-            //return false;
-            return true;
+                foreach (Item item in player.inventory)
+                {
+                    if (item.type == ItemID.DirtBlock) // ToDo: Change this after dev is finished to be a common post-mech item
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public override List<string> SetNPCNameList()
+        {
+            return new List<string>()
+            {
+                "Sten"
+            };
         }
 
         // Example Person needs a house built out of ExampleMod tiles. You can delete this whole method in your townNPC for the regular house conditions.
@@ -110,40 +118,40 @@ namespace HeavensAbove.Content.NPCs
 
         public override void FindFrame(int frameHeight)
         {
-            /*npc.frame.Width = 40;
-			if (((int)Main.time / 10) % 2 == 0)
-			{
-				npc.frame.X = 40;
-			}
-			else
-			{
-				npc.frame.X = 0;
-			}*/
+            NPC.frame.Width = 40;
+            if (((int)Main.time / 10) % 2 == 0)
+            {
+                NPC.frame.X = 40;
+            }
+            else
+            {
+                NPC.frame.X = 0;
+            }
         }
 
-        //public override string GetChat()
-        //{
-        //    int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
-        //    if (partyGirl >= 0 && Main.rand.NextBool(4))
-        //    {
-        //        return "Can you please tell " + Main.npc[partyGirl].GivenName + " to stop decorating my house with colors?";
-        //    }
-        //    switch (Main.rand.Next(4))
-        //    {
-        //        case 0:
-        //            return "Sometimes I feel like I'm different from everyone else here.";
-        //        case 1:
-        //            return "What's your favorite color? My favorite colors are white and black.";
-        //        case 2:
-        //            {
-        //                // Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
-        //                Main.npcChatCornerItem = ItemID.HiveBackpack;
-        //                return $"Hey, if you find a [i:{ItemID.HiveBackpack}], I can upgrade it for you.";
-        //            }
-        //        default:
-        //            return "What? I don't have any arms or legs? Oh, don't be ridiculous!";
-        //    }
-        //}
+        public override string GetChat()
+        {
+            int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
+            if (partyGirl >= 0 && Main.rand.NextBool(4))
+            {
+                return "Can you please tell " + Main.npc[partyGirl].GivenName + " to stop decorating my house with colors?";
+            }
+            switch (Main.rand.Next(4))
+            {
+                case 0:
+                    return "Sometimes I feel like I'm different from everyone else here.";
+                case 1:
+                    return "What's your favorite color? My favorite colors are white and black.";
+                case 2:
+                    {
+                        // Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
+                        Main.npcChatCornerItem = ItemID.HiveBackpack;
+                        return $"Hey, if you find a [i:{ItemID.HiveBackpack}], I can upgrade it for you.";
+                    }
+                default:
+                    return "What? I don't have any arms or legs? Oh, don't be ridiculous!";
+            }
+        }
 
         /* 
 		// Consider using this alternate approach to choosing a random thing. Very useful for a variety of use cases.
@@ -168,44 +176,23 @@ namespace HeavensAbove.Content.NPCs
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            button = Language.GetTextValue("LegacyInterface.28");
-            button2 = "Awesomeify";
-            if (Main.LocalPlayer.HasItem(ItemID.HiveBackpack))
-                button = "Upgrade " + Lang.GetItemNameValue(ItemID.HiveBackpack);
+            button = "Chat";
+            button2 = "Quest";
         }
 
-        //public override void OnChatButtonClicked(bool firstButton, ref bool shop)
-        //{
-        //    if (firstButton)
-        //    {
-        //        // We want 3 different functionalities for chat buttons, so we use HasItem to change button 1 between a shop and upgrade action.
-        //        if (Main.LocalPlayer.HasItem(ItemID.HiveBackpack))
-        //        {
-        //            Main.PlaySound(SoundID.Item37); // Reforge/Anvil sound
-        //            Main.npcChatText = $"I upgraded your {Lang.GetItemNameValue(ItemID.HiveBackpack)} to a {Lang.GetItemNameValue(ModContent.ItemType<Items.Accessories.WaspNest>())}";
-        //            int hiveBackpackItemIndex = Main.LocalPlayer.FindItem(ItemID.HiveBackpack);
-        //            Main.LocalPlayer.inventory[hiveBackpackItemIndex].TurnToAir();
-        //            Main.LocalPlayer.QuickSpawnItem(ModContent.ItemType<Items.Accessories.WaspNest>());
-        //            return;
-        //        }
-        //        shop = true;
-        //    }
-        //    else
-        //    {
-        //        // If the 2nd button is pressed, open the inventory...
-        //        Main.playerInventory = true;
-        //        // remove the chat window...
-        //        Main.npcChatText = "";
-        //        // and start an instance of our UIState.
-        //        ModContent.GetInstance<ExampleMod>().ExamplePersonUserInterface.SetState(new UI.ExamplePersonUI());
-        //        // Note that even though we remove the chat window, Main.LocalPlayer.talkNPC will still be set correctly and we are still technically chatting with the npc.
-        //    }
-        //}
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
+        {
+            if(firstButton)
+            {
+                
+            }
+        }
 
         // Need to ensure this NPC doesn't have a shop
+        // This method no longer works, need to figure out the new way to do it
         //public override void SetupShop(Chest shop, ref int nextSlot)
         //{
-            
+
         //}
 
         //public override void NPCLoot()
@@ -231,16 +218,21 @@ namespace HeavensAbove.Content.NPCs
             randExtraCooldown = 30;
         }
 
-        //public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
-        //{
-        //    projType = ModContent.ProjectileType<SparklingBall>();
-        //    attackDelay = 1;
-        //}
+        public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
+        {
+            projType = ProjectileID.WoodenArrowFriendly; // Change this once we have some custom projectiles
+            attackDelay = 1;
+        }
 
         public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)
         {
             multiplier = 12f;
             randomOffset = 2f;
+        }
+
+        public override void OnKill()
+        {
+            Item.NewItem(NPC.GetSource_Death(), NPC.getRect(), ItemID.Acorn, 1, false, 0, false, false);
         }
     }
 }
