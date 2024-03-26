@@ -12,6 +12,43 @@ Mods: {
 			}
 		}
 
+		Buffs: {
+			AquaRing: {
+				Description: Mods.HeavensAbove.Buffs.AquaRing.Description
+				DisplayName: Aqua Ring
+			}
+		}
+
+		NPCs: {
+			AetherShopKeep.DisplayName: Aether Shop Keep
+
+			QuestGuy: {
+				DisplayName: Quest Guy
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
+			}
+
+			Cockatrice.DisplayName: Cockatrice
+			Sheepuff.DisplayName: Sheepuff
+			Swet.DisplayName: Swet
+			Valkyrie.DisplayName: Valkyrie
+			Zephyr.DisplayName: Zephyr
+			LabyrinthEye.DisplayName: Labyrinth Eye
+			SunSpirit.DisplayName: Sun Spirit
+			ValkyrieQueen.DisplayName: Valkyrie Queen
+		}
+
+		Tiles.AetherBloom.MapEntry: Aether Bloom
+
 		Items: {
 			AetherDirt: {
 				DisplayName: Aether Dirt

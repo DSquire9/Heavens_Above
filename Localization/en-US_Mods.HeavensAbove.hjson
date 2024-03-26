@@ -3,22 +3,8 @@ Keybinds: {
 
 Buffs: {
 	AquaRing: {
-		Description: Mods.HeavensAbove.Buffs.AquaRing.Description
-		DisplayName: Aqua Ring
 	}
 }
 
 NPCs: {
-	AetherShopKeep.DisplayName: Aether Shop Keep
-	QuestGuy.DisplayName: Quest Guy
-	Cockatrice.DisplayName: Cockatrice
-	Sheepuff.DisplayName: Sheepuff
-	Swet.DisplayName: Swet
-	Valkyrie.DisplayName: Valkyrie
-	Zephyr.DisplayName: Zephyr
-	LabyrinthEye.DisplayName: Labyrinth Eye
-	SunSpirit.DisplayName: Sun Spirit
-	ValkyrieQueen.DisplayName: Valkyrie Queen
 }
-
-Tiles.AetherBloom.MapEntry: Aether Bloom
