@@ -136,7 +136,7 @@ namespace HeavensAbove
 
                 // Gets its centered placement
                 int xPlacement = islPlace.GetMiddleX() - StructureData.testStructure.GetLength(1);
-                int yPlacement = islPlace.GetMiddleY() + StructureData.testStructure.GetLength(0);
+                int yPlacement = islPlace.GetMiddleY() - StructureData.testStructure.GetLength(0);
 
                 System.Console.WriteLine("Placing a Structure at: " + xPlacement + " " + yPlacement);
 
