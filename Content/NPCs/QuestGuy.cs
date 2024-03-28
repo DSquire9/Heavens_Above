@@ -139,7 +139,8 @@ namespace HeavensAbove.Content.NPCs
             switch (Main.rand.Next(4))
             {
                 case 0:
-                    return "Sometimes I feel like I'm different from everyone else here.";
+                    return "Hey! You seem like you’re a pretty powerful adventurer. " +
+                        "There’s this really cool place I’d like you to check out called the Aether. What do you say? Wanna go on an adventure?";
                 case 1:
                     return "What's your favorite color? My favorite colors are white and black.";
                 case 2:
@@ -184,7 +185,7 @@ namespace HeavensAbove.Content.NPCs
         {
             if(firstButton)
             {
-                
+                Main.npcChatText = "You pressed the first button";
             }
         }
 
