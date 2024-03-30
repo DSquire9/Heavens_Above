@@ -30,7 +30,7 @@ namespace HeavensAbove.Content.Plants
         // This is the primary texture for the trunk. Branches and foliage use different settings.
         public override Asset<Texture2D> GetTexture()
         {
-            return ModContent.Request<Texture2D>("HeavensAbove/Assets/Textures/Plants/ExampleTree");
+            return ModContent.Request<Texture2D>("HeavensAbove/Assets/Textures/Plants/AetherTree");
         }
 
         public override int SaplingGrowthType(ref int style)
@@ -47,13 +47,13 @@ namespace HeavensAbove.Content.Plants
         // Branch Textures
         public override Asset<Texture2D> GetBranchTextures()
         {
-            return ModContent.Request<Texture2D>("HeavensAbove/Assets/Textures/Plants/ExampleTree_Branches");
+            return ModContent.Request<Texture2D>("HeavensAbove/Assets/Textures/Plants/AetherTree_Branches");
         }
 
         // Top Textures
         public override Asset<Texture2D> GetTopTextures()
         {
-            return ModContent.Request<Texture2D>("HeavensAbove/Assets/Textures/Plants/ExampleTree_Tops");
+            return ModContent.Request<Texture2D>("HeavensAbove/Assets/Textures/Plants/AetherTree_Tops");
         }
 
         public override int DropWood()

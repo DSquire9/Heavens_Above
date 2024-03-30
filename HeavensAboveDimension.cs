@@ -123,6 +123,7 @@ namespace HeavensAbove
             List<Island> islandsWithStrucutres = new List<Island>();
             for(int i = 0; i < HeavensAboveDimension.numStructures; i++)
             {
+                Main.statusText = "Generating Dungeons: " + (int)((double)i / HeavensAboveDimension.numStructures * 100) + "%";
                 progress.Set((double)i / HeavensAboveDimension.numStructures);
                 // Gets a random island
                 Island islPlace = null;
