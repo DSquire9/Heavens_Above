@@ -1,5 +1,7 @@
-﻿using Terraria;
+﻿using HeavensAbove.Content.Tiles;
+using Terraria;
 using Terraria.GameContent;
+using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
 namespace HeavensAbove.Structures
@@ -62,57 +64,60 @@ namespace HeavensAbove.Structures
 
         };*/
 
+        static int tileID = ModContent.TileType<DungeonTile>();
+        static int wallID = ModContent.WallType<DungeonWall>();
+
         public static int[,] testStructure = new int[,]
         {
-           {45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,-1,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45},
-           {45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,-1,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,45,45,45,45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45,45,45,45,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,45,45,45,45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45,45,45,45,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,45,45,45,45,45,45,45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45,45,45,45,45,45,45,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,45,45,45,45,45,45,45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45,45,45,45,45,45,45,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45},
-           {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-           {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-           {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,45,45,45,45,45,45,45,45,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-           {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-           {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
-        };
+              {tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID},
+   {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+   {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+   {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,tileID,tileID,tileID,tileID,tileID,tileID,tileID,tileID,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+   {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+   {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
+};
 
         public static int[,] testStructureWalls = new int[,]
         {
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54},
-            {54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54}
-        };
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID},
+    {wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID,wallID}
+    };
     }
 
     public class Structure
