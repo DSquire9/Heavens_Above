@@ -39,7 +39,6 @@
     <None Remove="Content\Items\Weapons\AetheriumBlade.png" />
     <None Remove="Content\Items\Weapons\AetheriumBow.png" />
     <None Remove="Content\NPCs\AetherShopKeep.png" />
-    <None Remove="Content\NPCs\AetherShopKeep_Alt_1.png" />
     <None Remove="Content\NPCs\AetherShopKeep_Head.png" />
     <None Remove="Content\NPCs\QuestGuy.png" />
     <None Remove="Content\NPCs\QuestGuy_Alt_1.png" />
