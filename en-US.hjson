@@ -23,7 +23,7 @@ Mods: {
 			AetherShopKeep.DisplayName: Aether Shop Keep
 
 			QuestGuy: {
-				DisplayName: Quest Guy
+				DisplayName: Sten
 
 				TownNPCMood: {
 					Content: I am content.
