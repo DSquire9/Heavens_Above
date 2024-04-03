@@ -131,26 +131,26 @@ namespace HeavensAbove.Content.NPCs
 
         public override string GetChat()
         {
-            int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
+            /*int partyGirl = NPC.FindFirstNPC(NPCID.PartyGirl);
             if (partyGirl >= 0 && Main.rand.NextBool(4))
             {
                 return "Can you please tell " + Main.npc[partyGirl].GivenName + " to stop decorating my house with colors?";
-            }
+            }*/
             switch (Main.rand.Next(4))
             {
                 case 0:
-                    return "Hey! You seem like you’re a pretty powerful adventurer. " +
-                        "There’s this really cool place I’d like you to check out called the Aether. What do you say? Wanna go on an adventure?";
-                case 1:
+                    return "Ever want to see the ground from really far away? I'll show you if agree to help me kill a god.";
+                /*case 1:
                     return "What's your favorite color? My favorite colors are white and black.";
                 case 2:
                     {
                         // Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
                         Main.npcChatCornerItem = ItemID.HiveBackpack;
                         return $"Hey, if you find a [i:{ItemID.HiveBackpack}], I can upgrade it for you.";
-                    }
+                    }*/
                 default:
-                    return "What? I don't have any arms or legs? Oh, don't be ridiculous!";
+                    return "Hey! You seem like you’re a pretty powerful adventurer. " +
+                        "There’s this really cool place I’d like you to check out called the Aether. What do you say? Wanna go on an adventure?";
             }
         }
 
@@ -185,7 +185,25 @@ namespace HeavensAbove.Content.NPCs
         {
             if(firstButton)
             {
-                Main.npcChatText = "You pressed the first button";
+                switch (Main.rand.Next(4))
+                {
+                    case 0:
+                        Main.npcChatText = "I love it when the sky is clear. I can see all the way to the ground.";
+                        break;
+                    case 1:
+                        Main.npcChatText = "I love it when the sky is clear. I can see all the way to the ground.";
+                        break;
+                    case 2:
+                        {
+                            // Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
+                            Main.npcChatCornerItem = ItemID.HiveBackpack;
+                            Main.npcChatText = $"Hey, if you find a [i:{ItemID.HiveBackpack}], I can upgrade it for you.";
+                            break;
+                        }
+                    default:
+                        Main.npcChatText = "I hate purple monkeys. But I love dogs that solve mysteries.";
+                        break;
+                }
             }
         }
 
