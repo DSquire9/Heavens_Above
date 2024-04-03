@@ -47,7 +47,10 @@ Mods: {
 			ValkyrieQueen.DisplayName: Valkyrie Queen
 		}
 
-		Tiles.AetherBloom.MapEntry: Aether Bloom
+		Tiles: {
+			AetherBloom.MapEntry: Aether Bloom
+			AetheriumOre.MapEntry: Aetherium Ore
+		}
 
 		Items: {
 			AetherDirt: {
@@ -128,6 +131,16 @@ Mods: {
 			AetherWoodWall: {
 				DisplayName: Aether Wood Wall
 				Tooltip: ""
+			}
+
+			AetheriumOre: {
+				Tooltip: ""
+				DisplayName: Aetherium Ore
+			}
+
+			AetheriumBar: {
+				Tooltip: ""
+				DisplayName: Aetherium Bar
 			}
 		}
 	}

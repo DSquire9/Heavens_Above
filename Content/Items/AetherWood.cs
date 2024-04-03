@@ -24,9 +24,9 @@ namespace HeavensAbove.Content.Items
 
             Recipe platforms = Recipe.Create(ItemID.WoodPlatform, 2);
 
-            workbench.AddIngredient<Items.AetherWood>(1);
+            platforms.AddIngredient<Items.AetherWood>(1);
 
-            workbench.Register();
+            platforms.Register();
         }
     }
 }
