@@ -15,7 +15,9 @@ namespace HeavensAbove.Content.NPCs
     [AutoloadHead]
     public class QuestGuy : ModNPC
     {
-        public override string Texture => "HeavensAbove/Content/NPCs/QuestGuy";
+        public const string ShopName = "Shop";
+
+        //public override string Texture => "HeavensAbove/Content/NPCs/QuestGuy";
 
         //public override string[] AltTextures => new[] { "HeavensAbove//Content//NPCs//QuestGuy_Alt_1.png" };
 
@@ -36,8 +38,8 @@ namespace HeavensAbove.Content.NPCs
         {
             NPC.townNPC = true;
             NPC.friendly = true;
-            NPC.width = 18;
-            NPC.height = 40;
+            NPC.width = 20;
+            NPC.height = 20;
             NPC.aiStyle = 7;
             NPC.damage = 10;
             NPC.defense = 15;
@@ -53,7 +55,7 @@ namespace HeavensAbove.Content.NPCs
             NPCID.Sets.AttackTime[NPC.type] = 90;
             NPCID.Sets.AttackAverageChance[NPC.type] = 30;
             NPCID.Sets.HatOffsetY[NPC.type] = 4;
-            AnimationType = 22;
+            AnimationType = NPCID.Guide;
         }
 
         public override void HitEffect(NPC.HitInfo hit)
@@ -118,15 +120,15 @@ namespace HeavensAbove.Content.NPCs
 
         public override void FindFrame(int frameHeight)
         {
-            NPC.frame.Width = 40;
-            if (((int)Main.time / 10) % 2 == 0)
-            {
-                NPC.frame.X = 40;
-            }
-            else
-            {
-                NPC.frame.X = 0;
-            }
+            //NPC.frame.Width = 40;
+            //if (((int)Main.time / 10) % 2 == 0)
+            //{
+            //    NPC.frame.X = 40;
+            //}
+            //else
+            //{
+            //    NPC.frame.X = 0;
+            //}
         }
 
         public override string GetChat()
@@ -178,10 +180,10 @@ namespace HeavensAbove.Content.NPCs
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = "Chat";
-            button2 = "Quest";
+            button2 = "Shop";
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
+        public override void OnChatButtonClicked(bool firstButton, ref string shop)
         {
             if(firstButton)
             {
@@ -205,14 +207,10 @@ namespace HeavensAbove.Content.NPCs
                         break;
                 }
             }
+
+            shop = ShopName;
         }
 
-        // Need to ensure this NPC doesn't have a shop
-        // This method no longer works, need to figure out the new way to do it
-        //public override void SetupShop(Chest shop, ref int nextSlot)
-        //{
-
-        //}
 
         //public override void NPCLoot()
         //{
@@ -253,6 +251,49 @@ namespace HeavensAbove.Content.NPCs
         {
             Item.NewItem(NPC.GetSource_Death(), NPC.getRect(), ItemID.Acorn, 1, false, 0, false, false);
         }
+
+        public override void AddShops() {
+            var npcShop = new NPCShop(Type, ShopName)
+                .Add<Items.AetherDirt>()
+                //.Add<EquipMaterial>()
+                //.Add<BossItem>()
+                //.Add(new Item(ModContent.ItemType<Items.Placeable.Furniture.ExampleWorkbench>()) { shopCustomPrice = Item.buyPrice(copper: 15) }) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
+                //.Add<Items.Placeable.Furniture.ExampleChair>()
+                //.Add<Items.Placeable.Furniture.ExampleDoor>()
+                //.Add<Items.Placeable.Furniture.ExampleBed>()
+                //.Add<Items.Placeable.Furniture.ExampleChest>()
+                //.Add<Items.Tools.ExamplePickaxe>()
+                //.Add<Items.Tools.ExampleHamaxe>()
+                //.Add<Items.Consumables.ExampleHealingPotion>(new Condition("Mods.ExampleMod.Conditions.PlayerHasLifeforceBuff", () => Main.LocalPlayer.HasBuff(BuffID.Lifeforce)))
+                //.Add<Items.Weapons.ExampleSword>(Condition.MoonPhasesQuarter0)
+                //.Add<ExampleGun>(Condition.MoonPhasesQuarter1)
+                //.Add<Items.Ammo.ExampleBullet>(Condition.MoonPhasesQuarter1)
+                //.Add<Items.Weapons.ExampleStaff>(ExampleConditions.DownedMinionBoss)
+                //.Add<ExampleOnBuyItem>()
+                //.Add<Items.Weapons.ExampleYoyo>(Condition.IsNpcShimmered); // Let's sell an yoyo if this NPC is shimmered!
+                .Add<Items.AetherWood>();
+			npcShop.Register(); // Name of this shop tab
+		}
+
+        public override void ModifyActiveShop(string shopName, Item[] items)
+        {
+            foreach (Item item in items)
+            {
+                // Skip 'air' items and null items.
+                if (item == null || item.type == ItemID.None)
+                {
+                    continue;
+                }
+
+                // If NPC is shimmered then reduce all prices by 50%.
+                if (NPC.IsShimmerVariant)
+                {
+                    int value = item.shopCustomPrice ?? item.value;
+                    item.shopCustomPrice = value / 2;
+                }
+            }
+        }
+
     }
 }
 

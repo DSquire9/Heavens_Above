@@ -33,5 +33,29 @@ namespace HeavensAbove.Content.Items.Potions
             Item.buffType = ModContent.BuffType<AquaRing>();
             Item.buffTime = 240;
         }
+
+        public override void AddRecipes()
+        {
+            Recipe recipe1 = Recipe.Create(ModContent.ItemType<AetherPotion>(), 4);
+
+            recipe1.AddIngredient(ItemID.BottledWater);
+            recipe1.AddIngredient<AetherBloom>();
+            //recipe.AddIngredient<AetheriumOre>();
+
+            recipe1.AddTile(TileID.Bottles);
+
+            recipe1.Register();
+
+
+            Recipe recipe2 = Recipe.Create(ModContent.ItemType<AetherPotion>(), 4);
+
+            recipe2.AddIngredient(ItemID.BottledWater);
+            recipe2.AddIngredient<AetherBloom>();
+            //recipe.AddIngredient<AetheriumOre>();
+
+            recipe2.AddTile(TileID.AlchemyTable);
+
+            recipe2.Register();
+        }
     }
 }
