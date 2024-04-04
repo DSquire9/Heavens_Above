@@ -19,6 +19,8 @@
     <None Remove="Content\Enemies\Zephyr.png" />
     <None Remove="Content\Items\Accessories\IcarianWings.png" />
     <None Remove="Content\Items\Accessories\IcarianWings_Wings.png" />
+    <None Remove="Content\Items\AetheriumBar.png" />
+    <None Remove="Content\Items\AetheriumOre.png" />
     <None Remove="Content\Items\Armor\AetheriumBreastplate.png" />
     <None Remove="Content\Items\Armor\AetheriumBreastplate_Arms.png" />
     <None Remove="Content\Items\Armor\AetheriumBreastplate_Body.png" />
@@ -43,6 +45,8 @@
     <None Remove="Content\NPCs\QuestGuy.png" />
     <None Remove="Content\NPCs\QuestGuy_Alt_1.png" />
     <None Remove="Content\NPCs\QuestGuy_Head.png" />
+    <None Remove="Content\Tiles\AetheriumBar.png" />
+    <None Remove="Content\Tiles\AetheriumOre.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
