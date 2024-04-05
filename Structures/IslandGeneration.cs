@@ -7,6 +7,7 @@ using Terraria.ID;
 using Terraria.GameContent.Biomes;
 using Terraria.ModLoader;
 using Terraria.Enums;
+using HeavensAbove.Content.Items;
 
 namespace HeavensAbove.Structures
 {
@@ -108,6 +109,7 @@ namespace HeavensAbove.Structures
                     WorldUtils.Gen(point3, new Shapes.Mound(WorldGen.genRand.Next(8, 15), WorldGen.genRand.Next(20, 35)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
                     WorldUtils.Gen(point4, new Shapes.Mound(WorldGen.genRand.Next(5, 10), WorldGen.genRand.Next(8, 15)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
                     WorldUtils.Gen(point6, new Shapes.Mound(WorldGen.genRand.Next(3, 10), WorldGen.genRand.Next(10, 25)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(4, 8), 0.8), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
+                    WorldGen.TileRunner(offsetX+Main.rand.Next(-10,10), offsetY+islandHeight/2 + Main.rand.Next(0, 6), 10, Main.rand.Next(16, 16),ModContent.TileType<Content.Tiles.AetheriumOre>());
                     break;
                 // Medium Island
                 case 1:
@@ -133,6 +135,7 @@ namespace HeavensAbove.Structures
                     WorldUtils.Gen(point3, new Shapes.Mound(WorldGen.genRand.Next(12, 25), WorldGen.genRand.Next(40, 55)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
                     WorldUtils.Gen(point4, new Shapes.Mound(WorldGen.genRand.Next(8, 20), WorldGen.genRand.Next(20, 35)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
                     WorldUtils.Gen(point6, new Shapes.Mound(WorldGen.genRand.Next(9, 15), WorldGen.genRand.Next(30, 45)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(4, 8), 0.8), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
+                    WorldGen.TileRunner(offsetX + Main.rand.Next(-10, 10), offsetY + islandHeight / 2 + Main.rand.Next(0, 8), 10, Main.rand.Next(16, 16), ModContent.TileType<Content.Tiles.AetheriumOre>());
                     break;
                 // Large island
                 case 2:
@@ -159,6 +162,7 @@ namespace HeavensAbove.Structures
                     WorldUtils.Gen(point3, new Shapes.Mound(WorldGen.genRand.Next(40, 55), WorldGen.genRand.Next(50, 65)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
                     WorldUtils.Gen(point4, new Shapes.Mound(WorldGen.genRand.Next(20, 25), WorldGen.genRand.Next(20, 35)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(2, 6), 0.6), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
                     WorldUtils.Gen(point6, new Shapes.Mound(WorldGen.genRand.Next(16, 20), WorldGen.genRand.Next(30, 45)), Actions.Chain(new Modifiers.Blotches(WorldGen.genRand.Next(4, 8), 0.8), new Actions.ClearTile(), new Actions.SetFrames(frameNeighbors: true).Output(shapeData2)));
+                    WorldGen.TileRunner(offsetX + Main.rand.Next(-10, 10), offsetY + islandHeight / 2 + Main.rand.Next(0, 10), 15, Main.rand.Next(20, 20), ModContent.TileType<Content.Tiles.AetheriumOre>());
                     break;
             }
         }
