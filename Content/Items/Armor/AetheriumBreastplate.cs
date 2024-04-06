@@ -27,10 +27,10 @@ namespace HeavensAbove.Content.Items.Armor
             Item.height = 18;
 
 
-            Item.value = Item.buyPrice(gold: 2, silver: 40); // Change
-            Item.rare = ItemRarityID.LightRed; // Change
+            Item.value = Item.buyPrice(gold: 2, silver: 40);
+            Item.rare = ItemRarityID.LightRed;
 
-            Item.defense = 15; // Change
+            Item.defense = 15; 
         }
 
         public override void UpdateEquip(Player player)
@@ -42,7 +42,7 @@ namespace HeavensAbove.Content.Items.Armor
         {
             Recipe recipe = Recipe.Create(ModContent.ItemType<AetheriumBreastplate>(), 1);
 
-            //recipe.AddIngredient<Aetherium>(26);
+            recipe.AddIngredient<AetheriumBar>(26);
 
             recipe.AddTile(TileID.MythrilAnvil);
 

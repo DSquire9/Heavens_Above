@@ -10,11 +10,13 @@
   <ItemGroup>
     <None Remove="Content\Bosses\LabyrinthEye.png" />
     <None Remove="Content\Bosses\SunSpirit.png" />
+    <None Remove="Content\Bosses\SunSpirit_Head_Boss.png" />
     <None Remove="Content\Bosses\ValkyrieQueen.png" />
     <None Remove="Content\Buffs\AquaRing.png" />
+    <None Remove="Content\Buffs\GoToSpace.png" />
     <None Remove="Content\Enemies\Cockatrice.png" />
     <None Remove="Content\Enemies\Sheepuff.png" />
-    <None Remove="Content\Enemies\Swet.png" />
+    <None Remove="Content\Enemies\swet.png" />
     <None Remove="Content\Enemies\Valkyrie.png" />
     <None Remove="Content\Enemies\Zephyr.png" />
     <None Remove="Content\Items\Accessories\IcarianWings.png" />

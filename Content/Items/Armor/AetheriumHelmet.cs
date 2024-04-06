@@ -42,7 +42,7 @@ namespace HeavensAbove.Content.Items.Armor
         {
             Recipe recipe = Recipe.Create(ModContent.ItemType<AetheriumHelmet>(), 1);
 
-            //recipe.AddIngredient<Aetherium>(13);
+            recipe.AddIngredient<AetheriumBar>(13);
 
             recipe.AddTile(TileID.MythrilAnvil);
 

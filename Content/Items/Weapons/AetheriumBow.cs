@@ -23,7 +23,7 @@ namespace HeavensAbove.Content.Items.Weapons
         {
             Recipe recipe = Recipe.Create(ModContent.ItemType<AetheriumBow>(), 1);
 
-            //recipe.AddIngredient<Aetherium>(13);
+            recipe.AddIngredient<AetheriumBar>(13);
 
             recipe.AddTile(TileID.MythrilAnvil);
 

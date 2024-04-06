@@ -4,6 +4,11 @@ Keybinds: {
 Buffs: {
 	AquaRing: {
 	}
+
+	GoToSpace: {
+		DisplayName: Go To Space
+		Description: Mods.HeavensAbove.Buffs.GoToSpace.Description
+	}
 }
 
 NPCs: {
