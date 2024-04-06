@@ -16,7 +16,7 @@
     <None Remove="Content\Buffs\GoToSpace.png" />
     <None Remove="Content\Enemies\Cockatrice.png" />
     <None Remove="Content\Enemies\Sheepuff.png" />
-    <None Remove="Content\Enemies\swet.png" />
+    <None Remove="Content\Enemies\Swet.png" />
     <None Remove="Content\Enemies\Valkyrie.png" />
     <None Remove="Content\Enemies\Zephyr.png" />
     <None Remove="Content\Items\Accessories\IcarianWings.png" />

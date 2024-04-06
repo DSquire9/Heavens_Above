@@ -19,14 +19,14 @@ namespace HeavensAbove.Content.Enemies
         public override void SetStaticDefaults()
         {
             //DisplayName.SetDefault("Swet");
-            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.SlimeRibbonGreen];
+            Main.npcFrameCount[NPC.type] = 4;
         }
 
         public override void SetDefaults()
         {
             // Change stats
             NPC.width = 18;
-            NPC.height = 40;
+            NPC.height = 20;
             NPC.damage = 14;
             NPC.defense = 6;
             NPC.lifeMax = 200;
