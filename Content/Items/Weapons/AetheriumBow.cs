@@ -17,7 +17,17 @@ namespace HeavensAbove.Content.Items.Weapons
         public override void SetStaticDefaults() { }
 
         //https://terraria.fandom.com/wiki/Titanium_Repeater
-        public override void SetDefaults() { }
+        public override void SetDefaults() {
+            Item.DefaultToBow(19,10.5f,true);
+
+            Item.rare = ItemRarityID.LightRed;
+            Item.damage = 48;
+            Item.knockBack = 3;
+            Item.crit = 6;
+            Item.useTime = Item.useAnimation / 2;
+            Item.consumeAmmoOnLastShotOnly = true;
+            Item.reuseDelay = 16;
+        }
 
         public override void AddRecipes()
         {

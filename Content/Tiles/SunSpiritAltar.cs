@@ -1,4 +1,6 @@
-﻿using HeavensAbove.Content.NPCs;
+﻿using HeavensAbove.Content.Enemies;
+using HeavensAbove.Content.NPCs;
+using HeavensAbove.Content.Bosses;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
@@ -26,7 +28,7 @@ namespace HeavensAbove.Content.Tiles
 
         private void SpawnBoss(int i, int j)
         {
-            npcIndex = NPC.NewNPC(Entity.GetSource_NaturalSpawn(), (int)i*16, (int)j*16, ModContent.NPCType<QuestGuy>());
+            npcIndex = NPC.NewNPC(Entity.GetSource_NaturalSpawn(), (int)i*16, (int)j*16, ModContent.NPCType<SunSpirit>());
             Main.npc[npcIndex].value = 0f;
             Main.npc[npcIndex].npcSlots = 0f;
 
