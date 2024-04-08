@@ -129,7 +129,8 @@ namespace HeavensAbove.Content.NPCs
             }*/
 
             //Same check for if the first button is chat or quest
-            if (Main.LocalPlayer.HasItem(ItemID.DirtBlock))
+            //if (Main.LocalPlayer.HasItem(ItemID.DirtBlock))
+            if(NPC.downedMechBossAny == true)
             {
                 switch (Main.rand.Next(3))
                 {
@@ -190,7 +191,7 @@ namespace HeavensAbove.Content.NPCs
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = "Chat";
-            if (Main.LocalPlayer.HasItem(ItemID.DirtBlock))
+            if (NPC.downedMechBossAny == true)
             {
                 button = "Quest";
             }
@@ -201,7 +202,7 @@ namespace HeavensAbove.Content.NPCs
         {
             if(firstButton)
             {
-                if(Main.LocalPlayer.HasItem(ItemID.DirtBlock)) //use same condition for switching between chat and quest in SetChatButtons
+                if(NPC.downedMechBossAny == true) //use same condition for switching between chat and quest in SetChatButtons
                 {
                     SubworldSystem.Enter<HeavensAboveDimension>();
                 }
