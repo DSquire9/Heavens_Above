@@ -15,18 +15,6 @@ namespace HeavensAbove.Content.NPCs
     [AutoloadHead]
     public class QuestGuy : ModNPC
     {
-        public const string ShopName = "Shop";
-
-        //public override string Texture => "HeavensAbove/Content/NPCs/QuestGuy";
-
-        //public override string[] AltTextures => new[] { "HeavensAbove//Content//NPCs//QuestGuy_Alt_1.png" };
-
-        //public override bool Autoload(ref string name)
-        //{
-        //    name = "Example Person";
-        //    return mod.Properties.Autoload;
-        //}
-
         public override void SetStaticDefaults()
         {
             //DisplayName automatically assigned from .lang files, but the commented line below is the normal approach.
@@ -180,7 +168,7 @@ namespace HeavensAbove.Content.NPCs
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = "Chat";
-            button2 = "Shop";
+            //button2 = "Shop";
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref string shop)
@@ -197,9 +185,7 @@ namespace HeavensAbove.Content.NPCs
                         break;
                     case 2:
                         {
-                            // Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
-                            Main.npcChatCornerItem = ItemID.HiveBackpack;
-                            Main.npcChatText = $"Hey, if you find a [i:{ItemID.HiveBackpack}], I can upgrade it for you.";
+                            Main.npcChatText = "I hate purple monkeys. But I love dogs that solve mysteries.";
                             break;
                         }
                     default:
@@ -207,8 +193,6 @@ namespace HeavensAbove.Content.NPCs
                         break;
                 }
             }
-
-            shop = ShopName;
         }
 
 
@@ -250,48 +234,6 @@ namespace HeavensAbove.Content.NPCs
         public override void OnKill()
         {
             Item.NewItem(NPC.GetSource_Death(), NPC.getRect(), ItemID.Acorn, 1, false, 0, false, false);
-        }
-
-        public override void AddShops() {
-            var npcShop = new NPCShop(Type, ShopName)
-                .Add<Items.AetherDirt>()
-                //.Add<EquipMaterial>()
-                //.Add<BossItem>()
-                //.Add(new Item(ModContent.ItemType<Items.Placeable.Furniture.ExampleWorkbench>()) { shopCustomPrice = Item.buyPrice(copper: 15) }) // This example sets a custom price, ExampleNPCShop.cs has more info on custom prices and currency. 
-                //.Add<Items.Placeable.Furniture.ExampleChair>()
-                //.Add<Items.Placeable.Furniture.ExampleDoor>()
-                //.Add<Items.Placeable.Furniture.ExampleBed>()
-                //.Add<Items.Placeable.Furniture.ExampleChest>()
-                //.Add<Items.Tools.ExamplePickaxe>()
-                //.Add<Items.Tools.ExampleHamaxe>()
-                //.Add<Items.Consumables.ExampleHealingPotion>(new Condition("Mods.ExampleMod.Conditions.PlayerHasLifeforceBuff", () => Main.LocalPlayer.HasBuff(BuffID.Lifeforce)))
-                //.Add<Items.Weapons.ExampleSword>(Condition.MoonPhasesQuarter0)
-                //.Add<ExampleGun>(Condition.MoonPhasesQuarter1)
-                //.Add<Items.Ammo.ExampleBullet>(Condition.MoonPhasesQuarter1)
-                //.Add<Items.Weapons.ExampleStaff>(ExampleConditions.DownedMinionBoss)
-                //.Add<ExampleOnBuyItem>()
-                //.Add<Items.Weapons.ExampleYoyo>(Condition.IsNpcShimmered); // Let's sell an yoyo if this NPC is shimmered!
-                .Add<Items.AetherWood>();
-			npcShop.Register(); // Name of this shop tab
-		}
-
-        public override void ModifyActiveShop(string shopName, Item[] items)
-        {
-            foreach (Item item in items)
-            {
-                // Skip 'air' items and null items.
-                if (item == null || item.type == ItemID.None)
-                {
-                    continue;
-                }
-
-                // If NPC is shimmered then reduce all prices by 50%.
-                if (NPC.IsShimmerVariant)
-                {
-                    int value = item.shopCustomPrice ?? item.value;
-                    item.shopCustomPrice = value / 2;
-                }
-            }
         }
 
     }

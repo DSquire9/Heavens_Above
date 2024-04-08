@@ -27,6 +27,7 @@ namespace HeavensAbove.Content.Items.Weapons
             Item.useTime = Item.useAnimation / 2;
             Item.consumeAmmoOnLastShotOnly = true;
             Item.reuseDelay = 16;
+            Item.value = Item.buyPrice(gold: 2, silver: 80); ;
         }
 
         public override void AddRecipes()

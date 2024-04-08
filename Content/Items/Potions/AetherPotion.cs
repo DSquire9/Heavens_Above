@@ -27,24 +27,24 @@ namespace HeavensAbove.Content.Items.Potions
             Item.useAnimation = 15;
             Item.maxStack = 50;
             Item.consumable = true;
-            Item.rare = ItemRarityID.Gray; // Change
+            Item.rare = ItemRarityID.LightRed;
             Item.value = Item.buyPrice(silver: 75); // Maybe Change
             Item.UseSound = SoundID.Item3;
             Item.buffType = ModContent.BuffType<AquaRing>();
-            Item.buffTime = 240;
+            Item.buffTime = 60 * 240;
         }
 
         public override void AddRecipes()
         {
-            Recipe recipe1 = Recipe.Create(ModContent.ItemType<AetherPotion>(), 4);
+            Recipe recipe = Recipe.Create(ModContent.ItemType<AetherPotion>(), 2);
 
-            recipe1.AddIngredient(ItemID.BottledWater);
-            recipe1.AddIngredient<AetherBloom>();
-            recipe1.AddIngredient<AetheriumOre>();
+            recipe.AddIngredient(ItemID.BottledWater);
+            recipe.AddIngredient<AetherBloom>();
+            recipe.AddIngredient<AetheriumOre>();
 
-            recipe1.AddTile(TileID.Bottles);
+            recipe.AddTile(TileID.Bottles);
 
-            recipe1.Register();
+            recipe.Register();
         }
     }
 }

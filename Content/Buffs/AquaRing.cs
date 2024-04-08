@@ -21,7 +21,7 @@ namespace HeavensAbove.Content.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            // Add the actual buff here
+            player.onHitTitaniumStorm = true;
         }
     }
 }
