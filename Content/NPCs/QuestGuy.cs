@@ -9,6 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using SubworldLibrary;
 
 namespace HeavensAbove.Content.NPCs
 {
@@ -126,22 +127,43 @@ namespace HeavensAbove.Content.NPCs
             {
                 return "Can you please tell " + Main.npc[partyGirl].GivenName + " to stop decorating my house with colors?";
             }*/
-            switch (Main.rand.Next(4))
+
+            //Same check for if the first button is chat or quest
+            if (Main.LocalPlayer.HasItem(ItemID.DirtBlock))
             {
-                case 0:
-                    return "Ever want to see the ground from really far away? I'll show you if agree to help me kill a god.";
-                /*case 1:
-                    return "What's your favorite color? My favorite colors are white and black.";
-                case 2:
-                    {
-                        // Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
-                        Main.npcChatCornerItem = ItemID.HiveBackpack;
-                        return $"Hey, if you find a [i:{ItemID.HiveBackpack}], I can upgrade it for you.";
-                    }*/
-                default:
-                    return "Hey! You seem like you’re a pretty powerful adventurer. " +
-                        "There’s this really cool place I’d like you to check out called the Aether. What do you say? Wanna go on an adventure?";
+                switch (Main.rand.Next(3))
+                {
+                    case 0:
+                        return "Ever want to see the ground from really far away? I'll show you if agree to help me kill a god.";
+                    case 1:
+                        return "Seems like you have experience dealing with Mechs. If you take care of one more I'll make it worth your while.";
+                    /*case 2:
+                        {
+                            // Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
+                            Main.npcChatCornerItem = ItemID.HiveBackpack;
+                            return $"Hey, if you find a [i:{ItemID.HiveBackpack}], I can upgrade it for you.";
+                        }*/
+                    default:
+                        return "Hey! You seem like you’re a pretty powerful adventurer. " +
+                            "There’s this really cool place I’d like you to check out called the Aether. What do you say? Wanna go on an adventure?";
+                }
             }
+            //For if the player is not ready for the quest yet
+            else
+            {
+                switch (Main.rand.Next(4))
+                {
+                    case 0:
+                        return "Hmmm... You don't quite seem strong enough for me yet.";
+                    case 1:
+                        return "Sorry. I don't give quests to rookies. Come back when your a little MMMMM stronger.";
+                    case 2:
+                        return "Don't waste my time. I need someone strong enough to defeat a giant Mech.";
+                    default:
+                        return "Come back to me once you've got enough experience dealing with Mechs.";
+                }
+            }
+            
         }
 
         /* 
@@ -168,29 +190,37 @@ namespace HeavensAbove.Content.NPCs
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = "Chat";
-            //button2 = "Shop";
+            if (Main.LocalPlayer.HasItem(ItemID.DirtBlock))
+            {
+                button = "Quest";
+            }
+            //button2 = "Quest";
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref string shop)
         {
             if(firstButton)
             {
-                switch (Main.rand.Next(4))
+                if(Main.LocalPlayer.HasItem(ItemID.DirtBlock)) //use same condition for switching between chat and quest in SetChatButtons
                 {
-                    case 0:
-                        Main.npcChatText = "I love it when the sky is clear. I can see all the way to the ground.";
-                        break;
-                    case 1:
-                        Main.npcChatText = "I love it when the sky is clear. I can see all the way to the ground.";
-                        break;
-                    case 2:
-                        {
+                    SubworldSystem.Enter<HeavensAboveDimension>();
+                }
+                else {
+                    switch (Main.rand.Next(4))
+                    {
+                        case 0:
+                            Main.npcChatText = "I love it when the sky is clear. I can see all the way to the ground.";
+                            break;
+                        case 1:
+                            Main.npcChatText = "I love it when the sky is clear. I can see all the way to the ground.";
+                            break;
+                        case 2:
                             Main.npcChatText = "I hate purple monkeys. But I love dogs that solve mysteries.";
                             break;
-                        }
-                    default:
-                        Main.npcChatText = "I hate purple monkeys. But I love dogs that solve mysteries.";
-                        break;
+                        default:
+                            Main.npcChatText = "I hate purple monkeys. But I love dogs that solve mysteries.";
+                            break;
+                    }
                 }
             }
         }
