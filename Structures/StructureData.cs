@@ -3,6 +3,7 @@ using System.Drawing;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
@@ -40,6 +41,16 @@ namespace HeavensAbove.Structures
             WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX,posY), new Shapes.Rectangle(width, height), new Actions.SetTile((ushort)ModContent.TileType<DungeonTile>()));
             WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX+6, posY+3), new Shapes.Rectangle(width-(6*2), height-(3*2)), new Actions.ClearTile());
             WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX+1, posY+1), new Shapes.Rectangle(width-2, height-2), new Actions.PlaceWall((ushort)ModContent.WallType<DungeonWall>()));
+
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX +12, posY + height/2), new Shapes.Rectangle(width /3, 1), new Actions.SetTile(TileID.Platforms));
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX+(width*2/3) - 12, posY + height / 2), new Shapes.Rectangle(width / 3, 1), new Actions.SetTile(TileID.Platforms));
+
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + 36, posY + (height *3/4)), new Shapes.Rectangle(width / 3, 1), new Actions.SetTile(TileID.Platforms));
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + (width * 2 / 3) - 36, posY + (height * 3 / 4)), new Shapes.Rectangle(width / 3, 1), new Actions.SetTile(TileID.Platforms));
+
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + 36, posY + height / 4), new Shapes.Rectangle(width / 3, 1), new Actions.SetTile(TileID.Platforms));
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + (width * 2 / 3) - 36, posY + height / 4), new Shapes.Rectangle(width / 3, 1), new Actions.SetTile(TileID.Platforms));
+
             WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + width / 2-1, posY + height/2+1), new Shapes.Rectangle(3, 1), new Actions.SetTile((ushort)ModContent.TileType<DungeonTile>()));
             WorldGen.Place3x2(posX + width/2, posY + height/2, (ushort)ModContent.TileType<SunSpiritAltar>());
         }
