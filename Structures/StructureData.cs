@@ -53,6 +53,16 @@ namespace HeavensAbove.Structures
 
             WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + width / 2-1, posY + height/2+1), new Shapes.Rectangle(3, 1), new Actions.SetTile((ushort)ModContent.TileType<DungeonTile>()));
             WorldGen.Place3x2(posX + width/2, posY + height/2, (ushort)ModContent.TileType<SunSpiritAltar>());
+
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + 36+width/6, posY + (height *3/4)-1), new Shapes.Rectangle(1, 1), new Actions.SetTile(TileID.Torches));
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + (width * 5 / 6) - 36, posY + (height * 3 / 4)-1), new Shapes.Rectangle(1, 1), new Actions.SetTile(TileID.Torches));
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + 36 + width / 6, posY + height / 4-1), new Shapes.Rectangle(1, 1), new Actions.SetTile(TileID.Torches));
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + (width * 5 / 6) - 36, posY + height / 4-1), new Shapes.Rectangle(1, 1), new Actions.SetTile(TileID.Torches));
+
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + 6, posY + 4), new Shapes.Rectangle(1, 1), new Actions.SetTile(TileID.Torches));
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + width-7, posY + 4), new Shapes.Rectangle(1, 1), new Actions.SetTile(TileID.Torches));
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + 6, posY + height - 4), new Shapes.Rectangle(1, 1), new Actions.SetTile(TileID.Torches));
+            WorldUtils.Gen(new Microsoft.Xna.Framework.Point(posX + width - 7, posY + height - 4), new Shapes.Rectangle(1, 1), new Actions.SetTile(TileID.Torches));
         }
     }
 }
