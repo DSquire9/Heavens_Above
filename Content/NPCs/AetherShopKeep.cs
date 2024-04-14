@@ -82,7 +82,7 @@ namespace HeavensAbove.Content.NPCs
         {
             return new List<string>()
             {
-                "Chad"
+                "Chad", "Edison"
             };
         }
 

@@ -128,40 +128,53 @@ namespace HeavensAbove.Content.NPCs
                 return "Can you please tell " + Main.npc[partyGirl].GivenName + " to stop decorating my house with colors?";
             }*/
 
-            //Same check for if the first button is chat or quest
-            //if (Main.LocalPlayer.HasItem(ItemID.DirtBlock))
-            if(NPC.downedMechBossAny == true)
+            //check if in subworld or not
+            if (SubworldSystem.Current != null)
             {
-                switch (Main.rand.Next(3))
-                {
-                    case 0:
-                        return "Ever want to see the ground from really far away? I'll show you if agree to help me kill a god.";
-                    case 1:
-                        return "Seems like you have experience dealing with Mechs. If you take care of one more I'll make it worth your while.";
-                    /*case 2:
-                        {
-                            // Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
-                            Main.npcChatCornerItem = ItemID.HiveBackpack;
-                            return $"Hey, if you find a [i:{ItemID.HiveBackpack}], I can upgrade it for you.";
-                        }*/
-                    default:
-                        return "Hey! You seem like you’re a pretty powerful adventurer. " +
-                            "There’s this really cool place I’d like you to check out called the Aether. What do you say? Wanna go on an adventure?";
-                }
+                //check if sunspirit is dead or not
+                return "My work here is done. Great job, me.";
             }
-            //For if the player is not ready for the quest yet
+            //if they aren't in the subworld, check if the mechs are defeated yet
             else
             {
-                switch (Main.rand.Next(4))
+                //Same check for if the first button is chat or quest
+                //if (Main.LocalPlayer.HasItem(ItemID.DirtBlock))
+                if (NPC.downedMechBossAny == true)
                 {
-                    case 0:
-                        return "Hmmm... You don't quite seem strong enough for me yet.";
-                    case 1:
-                        return "Sorry. I don't give quests to rookies. Come back when your a little MMMMM stronger.";
-                    case 2:
-                        return "Don't waste my time. I need someone strong enough to defeat a giant Mech.";
-                    default:
-                        return "Come back to me once you've got enough experience dealing with Mechs.";
+                    else
+                    {
+                        switch (Main.rand.Next(3))
+                        {
+                            case 0:
+                                return "Ever want to see the ground from really far away? I'll show you if agree to help me kill a god.";
+                            case 1:
+                                return "Seems like you have experience dealing with Mechs. If you take care of one more I'll make it worth your while.";
+                            /*case 2:
+                                {
+                                    // Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
+                                    Main.npcChatCornerItem = ItemID.HiveBackpack;
+                                    return $"Hey, if you find a [i:{ItemID.HiveBackpack}], I can upgrade it for you.";
+                                }*/
+                            default:
+                                return "Hey! You seem like you’re a pretty powerful adventurer. " +
+                                    "There’s this really cool place I’d like you to check out called the Aether. What do you say? Wanna go on an adventure?";
+                        }
+                    }
+                }
+                //For if the player is not ready for the quest yet
+                else
+                {
+                    switch (Main.rand.Next(4))
+                    {
+                        case 0:
+                            return "Hmmm... You don't quite seem strong enough for me yet.";
+                        case 1:
+                            return "Sorry. I don't give quests to rookies. Come back when your a little MMMMM stronger.";
+                        case 2:
+                            return "Don't waste my time. I need someone strong enough to defeat a giant Mech.";
+                        default:
+                            return "Come back to me once you've got enough experience dealing with Mechs.";
+                    }
                 }
             }
             
