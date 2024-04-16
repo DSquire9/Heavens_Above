@@ -36,6 +36,10 @@ namespace HeavensAbove.Content.Items.Armor
         public override void UpdateEquip(Player player)
         {
             // Give Buffs Here
+            player.GetDamage(DamageClass.Generic) += .09f;
+            player.GetCritChance(DamageClass.Generic) += 7;
+            player.statManaMax2 += 50;
+            player.GetAttackSpeed(DamageClass.Generic) += .07f;
         }
 
         public override void AddRecipes()
@@ -56,8 +60,10 @@ namespace HeavensAbove.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "Description of bonus";
-            //  Add Set bonus here
+            player.setBonus = "Grants Immunity to Poison, Confusion, and Feral Bite";
+            player.buffImmune[BuffID.Poisoned] = true;
+            player.buffImmune[BuffID.Confused] = true;
+            player.buffImmune[BuffID.Rabies] = true;
         }
     }
 }

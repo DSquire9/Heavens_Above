@@ -28,7 +28,7 @@ namespace HeavensAbove.Content.Items.Armor
 
 
             Item.value = Item.buyPrice(copper: 1); // Change
-            Item.rare = ItemRarityID.Gray; // Change
+            Item.rare = ItemRarityID.White; // Change
 
             Item.defense = 2; // Change
         }
@@ -56,8 +56,8 @@ namespace HeavensAbove.Content.Items.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "Description of bonus";
-            //  Add Set bonus here
+            player.setBonus = "Featherfall";
+            player.AddBuff(BuffID.Featherfall,1);
         }
     }
 }

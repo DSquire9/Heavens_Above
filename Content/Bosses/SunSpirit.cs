@@ -19,6 +19,13 @@ namespace HeavensAbove.Content.Bosses
     [AutoloadBossHead]
     public class SunSpirit : ModNPC
     {
+        public enum BossPhase
+        {
+            FirstPhase,
+            SecondPhase,
+            ThirdPhase
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 8;
@@ -61,8 +68,8 @@ namespace HeavensAbove.Content.Bosses
             NPC.npcSlots = 10f; // Take up open spawn slots, preventing random NPCs from spawning during the fight
 
 
-            NPC.aiStyle = NPCID.EyeofCthulhu;
-            AnimationType = NPCID.EyeofCthulhu;
+            NPC.aiStyle = -1;
+            //AnimationType = NPCID.EyeofCthulhu;
 
             // Custom boss bar
             //NPC.BossBar = ModContent.GetInstance<MinionBossBossBar>();
@@ -191,6 +198,56 @@ namespace HeavensAbove.Content.Bosses
                 PunchCameraModifier modifier = new PunchCameraModifier(NPC.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, FullName);
                 Main.instance.CameraModifiers.Add(modifier);
             }
+        }
+
+        public override void AI()
+        {
+            // This should almost always be the first code in AI() as it is responsible for finding the proper player target
+            if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+            {
+                NPC.TargetClosest();
+            }
+
+            Player player = Main.player[NPC.target];
+
+            if (player.dead)
+            {
+                // If the targeted player is dead, flee
+                NPC.velocity.Y -= 0.04f;
+                // This method makes it so when the boss is in "despawn range" (outside of the screen), it despawns in 10 ticks
+                NPC.EncourageDespawn(10);
+                return;
+            }
+
+            //SpawnMinions();
+
+            if (NPC.life > NPC.lifeMax * .75)
+            {
+                PhaseOne();
+            }
+            else if(NPC.life > NPC.lifeMax * .3)
+            {
+                PhaseTwo();
+            }
+            else
+            {
+                PhaseThree();
+            }
+        }
+
+        private void PhaseOne()
+        {
+
+        }
+
+        private void PhaseTwo()
+        {
+
+        }
+
+        private void PhaseThree()
+        {
+
         }
     }
 }

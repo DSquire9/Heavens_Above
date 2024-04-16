@@ -24,7 +24,7 @@ namespace HeavensAbove.Content.Items.Armor
 
 
             Item.value = Item.buyPrice(copper: 1); // Change
-            Item.rare = ItemRarityID.Gray; // Change
+            Item.rare = ItemRarityID.White; // Change
 
             Item.defense = 3; // Change
         }

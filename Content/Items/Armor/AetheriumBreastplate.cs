@@ -36,6 +36,8 @@ namespace HeavensAbove.Content.Items.Armor
         public override void UpdateEquip(Player player)
         {
             // Give Buffs Here
+            player.GetCritChance(DamageClass.Generic) += 3; // Adds 3% crit chance
+            player.GetDamage(DamageClass.Generic) += .04f; // Adds 4% damage
         }
 
         public override void AddRecipes()

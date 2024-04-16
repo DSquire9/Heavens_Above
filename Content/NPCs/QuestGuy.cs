@@ -141,8 +141,6 @@ namespace HeavensAbove.Content.NPCs
                 //if (Main.LocalPlayer.HasItem(ItemID.DirtBlock))
                 if (NPC.downedMechBossAny == true)
                 {
-                    else
-                    {
                         switch (Main.rand.Next(3))
                         {
                             case 0:
@@ -159,7 +157,7 @@ namespace HeavensAbove.Content.NPCs
                                 return "Hey! You seem like you’re a pretty powerful adventurer. " +
                                     "There’s this really cool place I’d like you to check out called the Aether. What do you say? Wanna go on an adventure?";
                         }
-                    }
+                    
                 }
                 //For if the player is not ready for the quest yet
                 else

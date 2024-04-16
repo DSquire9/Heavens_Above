@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
+using Terraria.DataStructures;
 
 namespace HeavensAbove.Content.Items.Accessories
 {
@@ -18,10 +19,13 @@ namespace HeavensAbove.Content.Items.Accessories
         //{
         //    return !ModContent.GetInstance<ExampleConfigServer>().DisableExampleWings;
         //}
-
         public override void SetStaticDefaults()
         {
-            //Tooltip.SetDefault("This is a modded wing.");
+            // These wings use the same values as the solar wings
+            // Fly time: 180 ticks = 3 seconds
+            // Fly speed: 9
+            // Acceleration multiplier: 2.5
+            ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(180, 9f, 2.5f);
         }
 
         public override void SetDefaults()
@@ -29,13 +33,14 @@ namespace HeavensAbove.Content.Items.Accessories
             Item.width = 22;
             Item.height = 20;
             Item.value = 10000;
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.LightRed;
             Item.accessory = true;
         }
         //these wings use the same values as the solar wings
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.wingTimeMax = 180;
+            player.AddBuff(BuffID.Inferno, 1);
         }
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
@@ -48,14 +53,10 @@ namespace HeavensAbove.Content.Items.Accessories
             constantAscend = 0.135f;
         }
 
-        public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
-        {
-            speed = 9f;
-            acceleration *= 2.5f;
-        }
-
-        public override void AddRecipes()
-        {
-        }
+        //public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
+        //{
+        //    speed = 9f;
+        //    acceleration *= 2.5f;
+        //}
     }
 }
