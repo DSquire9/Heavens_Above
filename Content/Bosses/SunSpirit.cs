@@ -19,6 +19,8 @@ namespace HeavensAbove.Content.Bosses
     [AutoloadBossHead]
     public class SunSpirit : ModNPC
     {
+        private int[] fireEnemies = [23,59,151,277,278,279,280,418];
+        private bool awake = false;
         public enum BossPhase
         {
             FirstPhase,
@@ -237,17 +239,24 @@ namespace HeavensAbove.Content.Bosses
 
         private void PhaseOne()
         {
+            if (!awake)
+            {
+                //Spawn 2 Blazing Wheels (72)
+                awake = true;
+            }
+
+            // Spawn different enemies on a weighted chance
 
         }
 
         private void PhaseTwo()
         {
-
+            // Chase player with some projectiles
         }
 
         private void PhaseThree()
         {
-
+            // Circle Player and spew random bullshit
         }
     }
 }
