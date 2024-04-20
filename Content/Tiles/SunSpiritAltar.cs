@@ -13,10 +13,12 @@ namespace HeavensAbove.Content.Tiles
         int npcIndex = -1;
         public override void SetStaticDefaults()
         {
+            MinPick = 1000;
             Main.tileFrameImportant[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.Origin = new Point16(1, 1);
             TileObjectData.newTile.AnchorBottom = new AnchorData(Terraria.Enums.AnchorType.SolidTile, 1, 0);
+            TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
         }
 
