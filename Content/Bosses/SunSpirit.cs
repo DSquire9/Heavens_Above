@@ -19,14 +19,20 @@ namespace HeavensAbove.Content.Bosses
     [AutoloadBossHead]
     public class SunSpirit : ModNPC
     {
-        private int[] fireEnemies = [23,59,151,277,278,279,280,418];
-        private bool awake = false;
-        public enum BossPhase
+        private int[] fireEnemies = { 23, 59, 151, 277, 278, 279, 280, 418 };
+        private int awake = 0;
+        private int phaseOneTimer = 0;
+        private Random random = new Random();
+        public Vector2 FirstStageDestination
         {
-            FirstPhase,
-            SecondPhase,
-            ThirdPhase
+            get => new Vector2(NPC.ai[1], NPC.ai[2]);
+            set
+            {
+                NPC.ai[1] = value.X;
+                NPC.ai[2] = value.Y;
+            }
         }
+        public Vector2 LastFirstStageDestination { get; set; } = Vector2.Zero;
 
         public override void SetStaticDefaults()
         {
@@ -225,38 +231,149 @@ namespace HeavensAbove.Content.Bosses
 
             if (NPC.life > NPC.lifeMax * .75)
             {
-                PhaseOne();
+                PhaseOne(player);
             }
-            else if(NPC.life > NPC.lifeMax * .3)
+            else if (NPC.life > NPC.lifeMax * .3)
             {
-                PhaseTwo();
+                PhaseTwo(player);
             }
             else
             {
-                PhaseThree();
+                PhaseThree(player);
             }
         }
 
-        private void PhaseOne()
+        private void PhaseOne(Player player)
         {
-            if (!awake)
+            if (awake < 6)
             {
-                //Spawn 2 Blazing Wheels (72)
-                awake = true;
+                SpawnNPCFromBoss(72);
+                awake++;
             }
 
             // Spawn different enemies on a weighted chance
+            if (phaseOneTimer == 60)
+            {
+                WeightedSpawn();
+            }
 
+            float distance = 200; // Distance in pixels behind the player
+
+            if (phaseOneTimer == 60)
+            {
+                Vector2 fromPlayer = NPC.Center - player.Center;
+
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    // Important multiplayer consideration: drastic change in behavior (that is also decided by randomness) like this requires
+                    // to be executed on the server (or singleplayer) to keep the boss in sync
+
+                    float angle = fromPlayer.ToRotation();
+                    float twelfth = MathHelper.Pi / 6;
+
+                    angle += MathHelper.Pi + Main.rand.NextFloat(-twelfth, twelfth);
+                    if (angle > MathHelper.TwoPi)
+                    {
+                        angle -= MathHelper.TwoPi;
+                    }
+                    else if (angle < 0)
+                    {
+                        angle += MathHelper.TwoPi;
+                    }
+
+                    Vector2 relativeDestination = angle.ToRotationVector2() * distance;
+
+                    FirstStageDestination = player.Center + relativeDestination;
+                    NPC.netUpdate = true;
+                }
+
+                // Move along the vector
+                Vector2 toDestination = FirstStageDestination - NPC.Center;
+                Vector2 toDestinationNormalized = toDestination.SafeNormalize(Vector2.UnitY);
+                float speed = Math.Min(distance, toDestination.Length());
+                NPC.velocity = toDestinationNormalized * speed / 30;
+
+                if (FirstStageDestination != LastFirstStageDestination)
+                {
+                    // If destination changed
+                    NPC.TargetClosest(); // Pick the closest player target again
+
+                    // "Why is this not in the same code that sets FirstStageDestination?" Because in multiplayer it's ran by the server.
+                    // The client has to know when the destination changes a different way. Keeping track of the previous ticks' destination is one way
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        // For visuals regarding NPC position, netOffset has to be concidered to make visuals align properly
+                        NPC.position += NPC.netOffset;
+
+                        // Draw a line between the NPC and its destination, represented as dusts every 20 pixels
+                        Dust.QuickDustLine(NPC.Center + toDestinationNormalized * NPC.width, FirstStageDestination, toDestination.Length() / 20f, Color.OrangeRed);
+
+                        NPC.position -= NPC.netOffset;
+                    }
+                }
+                LastFirstStageDestination = FirstStageDestination;
+
+                phaseOneTimer = 0;
+            }
+
+            phaseOneTimer++;
         }
 
-        private void PhaseTwo()
+        private void PhaseTwo(Player player)
         {
             // Chase player with some projectiles
         }
 
-        private void PhaseThree()
+        private void PhaseThree(Player player)
         {
             // Circle Player and spew random bullshit
+        }
+
+        private void SpawnNPCFromBoss(int id)
+        {
+            var entitySource = NPC.GetSource_FromAI();
+
+            NPC minionNPC = NPC.NewNPCDirect(entitySource, (int)NPC.Center.X, (int)NPC.Center.Y, id, NPC.whoAmI);
+
+            if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.SendData(MessageID.SyncNPC, number: minionNPC.whoAmI);
+            }
+        }
+
+        private void WeightedSpawn()
+        {
+            int roll = random.Next(50);
+
+            if (roll < 10)
+            {
+                SpawnNPCFromBoss(fireEnemies[0]);
+            }
+            else if (roll < 20)
+            {
+                SpawnNPCFromBoss(fireEnemies[1]);
+            }
+            else if (roll < 30)
+            {
+                SpawnNPCFromBoss(fireEnemies[2]);
+            }
+            else if (roll < 40)
+            {
+                SpawnNPCFromBoss(fireEnemies[3]);
+            }
+            else if (roll < 43)
+            {
+                SpawnNPCFromBoss(fireEnemies[4]);
+            }
+            else if (roll < 45)
+            {
+                SpawnNPCFromBoss(fireEnemies[5]);
+            }
+            else
+            {
+                SpawnNPCFromBoss(fireEnemies[6]);
+            }
+
         }
     }
 }
