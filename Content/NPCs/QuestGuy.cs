@@ -10,6 +10,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using SubworldLibrary;
+using HeavensAbove.Conent.Bosses;
 
 namespace HeavensAbove.Content.NPCs
 {
@@ -132,7 +133,14 @@ namespace HeavensAbove.Content.NPCs
             if (SubworldSystem.Current != null)
             {
                 //check if sunspirit is dead or not
-                return "My work here is done. Great job, me.";
+                if(DownedBossSystem.downedSunSpirit == true) {
+                    return "My work here is done. Great job, me.";
+                }
+                else
+                {
+                    return "What are you waiting around for? Go kill that Sun Spirit!";
+                }
+                
             }
             //if they aren't in the subworld, check if the mechs are defeated yet
             else

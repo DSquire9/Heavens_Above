@@ -11,6 +11,7 @@ using Terraria.ModLoader.Utilities;
 using Terraria.GameContent.ItemDropRules;
 using HeavensAbove.Content.Items;
 using HeavensAbove.Content.Items.Accessories;
+using HeavensAbove.Conent.Bosses;
 using Terraria.Audio;
 using Terraria.Graphics.CameraModifiers;
 
@@ -140,21 +141,21 @@ namespace HeavensAbove.Content.Bosses
             //npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<MinionBossPetItem>(), 4));
         }
 
-        //     public override void OnKill()
-        //     {
-        //         // This sets downedMinionBoss to true, and if it was false before, it initiates a lantern night
-        //         NPC.SetEventFlagCleared(ref DownedBossSystem.downedMinionBoss, -1);
+             public override void OnKill()
+             {
+                 // This sets downedMinionBoss to true, and if it was false before, it initiates a lantern night
+                 NPC.SetEventFlagCleared(ref DownedBossSystem.downedSunSpirit, -1);
 
-        //         // Since this hook is only ran in singleplayer and serverside, we would have to sync it manually.
-        //         // Thankfully, vanilla sends the MessageID.WorldData packet if a BOSS was killed automatically, shortly after this hook is ran
+                 // Since this hook is only ran in singleplayer and serverside, we would have to sync it manually.
+                 // Thankfully, vanilla sends the MessageID.WorldData packet if a BOSS was killed automatically, shortly after this hook is ran
 
-        //         // If your NPC is not a boss and you need to sync the world (which includes ModSystem, check DownedBossSystem), use this code:
-        //         /*
-        //if (Main.netMode == NetmodeID.Server) {
-        //	NetMessage.SendData(MessageID.WorldData);
-        //}
-        //*/
-        //     }
+                 // If your NPC is not a boss and you need to sync the world (which includes ModSystem, check DownedBossSystem), use this code:
+                 /*
+                  * if (Main.netMode == NetmodeID.Server) {
+                  * NetMessage.SendData(MessageID.WorldData);
+                  * }
+                  * */
+             }
 
         public override void BossLoot(ref string name, ref int potionType)
         {
