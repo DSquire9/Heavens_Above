@@ -15,31 +15,41 @@ namespace HeavensAbove.Content.Enemies
         public override void SetStaticDefaults()
         {
             //DisplayName.SetDefault("Zephyr");
-            Main.npcFrameCount[NPC.type] = Main.npcFrameCount[NPCID.Zombie];
+            Main.npcFrameCount[NPC.type] = 3;
         }
 
         public override void SetDefaults()
         {
-            //NPC.width = 18;
-            //NPC.height = 40;
-            //NPC.damage = 14;
-            //NPC.defense = 6;
-            //NPC.lifeMax = 200;
-            //NPC.HitSound = SoundID.NPCHit1;
-            //NPC.DeathSound = SoundID.NPCDeath2;
-            //NPC.value = 60f;
-            //NPC.knockBackResist = 0.5f;
-            //NPC.aiStyle = 3;
-            //aiType = NPCID.Zombie;
-            //animationType = NPCID.Zombie;
-            //banner = Item.NPCtoBanner(NPCID.Zombie);
-            //bannerItem = Item.BannerToItem(banner);
+            NPC.width = 18;
+            NPC.height = 40;
+            NPC.damage = 14;
+            NPC.defense = 6;
+            NPC.lifeMax = 200;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath2;
+            NPC.value = 60f;
+            NPC.knockBackResist = 0.5f;
+            NPC.aiStyle = NPCID.Harpy;
+            AIType = NPCID.Harpy;
+            AnimationType = NPCID.Harpy;
+            Banner = Item.NPCtoBanner(NPCID.Harpy);
+            BannerItem = Item.BannerToItem(Banner);
+
+            SpawnModBiomes = new int[1] { ModContent.GetInstance<HeavenBiome>().Type };
         }
 
-        //public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        //{
-        //    return SpawnCondition.OverworldNightMonster.Chance * 0.5f;
-        //}
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return ModContent.GetInstance<HeavenBiome>().IsBiomeActive(spawnInfo.Player) ? 0.5f : 0;
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            int buffType = BuffID.Slow;
+
+            int timeToAdd = 3 * 60; //This makes it 3 seconds, one second is 60 ticks
+            target.AddBuff(buffType, timeToAdd);
+        }
 
         //public override void HitEffect(int hitDirection, double damage)
         //{
