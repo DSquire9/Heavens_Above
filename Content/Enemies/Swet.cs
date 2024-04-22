@@ -54,10 +54,10 @@ namespace HeavensAbove.Content.Enemies
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AetheriumOre>(), 5, 2, 6)); // 20% (1 in 5) chance to drop 2-6 Aetherium ore
         }
 
-        //public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        //{
-        //    return SpawnCondition.OverworldNightMonster.Chance * 0.2f; // Spawn with 1/5th the chance of a regular zombie.
-        //}
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return ModContent.GetInstance<HeavenBiome>().IsBiomeActive(spawnInfo.Player) ? 0.5f : 0;
+        }
 
         //    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         //    {
