@@ -14,6 +14,9 @@ using HeavensAbove.Content.Items.Accessories;
 using HeavensAbove.Conent.Bosses;
 using Terraria.Audio;
 using Terraria.Graphics.CameraModifiers;
+using Terraria.DataStructures;
+using Mono.Cecil;
+using System.Reflection.Metadata;
 
 namespace HeavensAbove.Content.Bosses
 {
@@ -21,8 +24,12 @@ namespace HeavensAbove.Content.Bosses
     public class SunSpirit : ModNPC
     {
         private int[] fireEnemies = { 23, 59, 151, 277, 278, 279, 280, 418 };
+        private int[] fireProjectiles = { 15, 34, 329, 467 };
         private int awake = 0;
         private int phaseOneTimer = 0;
+        private int phaseTwoTimer = 0;
+        private int phaseThreeTimer = 0;
+        private double phaseThreeRotationTimer = 0;
         private Random random = new Random();
         public Vector2 FirstStageDestination
         {
@@ -78,7 +85,6 @@ namespace HeavensAbove.Content.Bosses
 
 
             NPC.aiStyle = -1;
-            //AnimationType = NPCID.EyeofCthulhu;
 
             // Custom boss bar
             //NPC.BossBar = ModContent.GetInstance<MinionBossBossBar>();
@@ -252,16 +258,11 @@ namespace HeavensAbove.Content.Bosses
                 awake++;
             }
 
-            // Spawn different enemies on a weighted chance
-            if (phaseOneTimer == 60)
-            {
-                WeightedSpawn();
-            }
-
             float distance = 200; // Distance in pixels behind the player
 
             if (phaseOneTimer == 60)
             {
+                WeightedSpawn();
                 Vector2 fromPlayer = NPC.Center - player.Center;
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -314,7 +315,7 @@ namespace HeavensAbove.Content.Bosses
                 }
                 LastFirstStageDestination = FirstStageDestination;
 
-                phaseOneTimer = 0;
+                phaseOneTimer = 1;
             }
 
             phaseOneTimer++;
@@ -323,11 +324,122 @@ namespace HeavensAbove.Content.Bosses
         private void PhaseTwo(Player player)
         {
             // Chase player with some projectiles
+            Vector2 fromPlayer = NPC.Center - player.Center;
+
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                FirstStageDestination = player.Center;
+                NPC.netUpdate = true;
+            }
+
+            // Move along the vector
+            Vector2 toDestination = FirstStageDestination - NPC.Center;
+            Vector2 toDestinationNormalized = toDestination.SafeNormalize(Vector2.UnitY);
+            float speed = 4f;
+            NPC.velocity = toDestinationNormalized * speed;
+
+            if (FirstStageDestination != LastFirstStageDestination)
+            {
+                // If destination changed
+                NPC.TargetClosest(); // Pick the closest player target again
+
+                // "Why is this not in the same code that sets FirstStageDestination?" Because in multiplayer it's ran by the server.
+                // The client has to know when the destination changes a different way. Keeping track of the previous ticks' destination is one way
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    // For visuals regarding NPC position, netOffset has to be concidered to make visuals align properly
+                    NPC.position += NPC.netOffset;
+
+                    // Draw a line between the NPC and its destination, represented as dusts every 20 pixels
+                    //Dust.QuickDustLine(NPC.Center + toDestinationNormalized * NPC.width, FirstStageDestination, toDestination.Length() / 20f, Color.OrangeRed);
+
+                    NPC.position -= NPC.netOffset;
+                }
+            }
+            LastFirstStageDestination = FirstStageDestination;
+
+            if (phaseTwoTimer == 45)
+            {
+                var source = NPC.GetSource_FromAI();
+                Vector2 position = NPC.Center;
+                Vector2 targetPosition = Main.player[NPC.target].Center;
+                Vector2 direction = targetPosition - position;
+                direction.Normalize();
+                float projSpeed = 5f;
+                int roll = random.Next(fireProjectiles.Length);
+                int type = fireProjectiles[roll];
+                int damage = NPC.damage; //If the projectile is hostile, the damage passed into NewProjectile will be applied doubled, and quadrupled if expert mode, so keep that in mind when balancing projectiles if you scale it off NPC.damage (which also increases for expert/master)
+                Projectile.NewProjectile(source, position, direction * projSpeed, 467, damage, 0f, Main.myPlayer);
+                phaseTwoTimer = 1;
+            }
+            phaseTwoTimer++;
         }
 
         private void PhaseThree(Player player)
         {
             // Circle Player and spew random bullshit
+            float distance = 800f;
+            Vector2 fromPlayer = NPC.Center - player.Center;
+
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                FirstStageDestination = player.position + new Vector2((float)(distance * Math.Cos(phaseThreeRotationTimer)), (float)(distance * Math.Sin(phaseThreeRotationTimer)));
+                NPC.netUpdate = true;
+            }
+
+            // Move along the vector
+            Vector2 toDestination = FirstStageDestination - NPC.Center;
+            Vector2 toDestinationNormalized = toDestination.SafeNormalize(Vector2.UnitY);
+            float speed = 8f;
+            NPC.velocity = toDestinationNormalized * speed;
+
+            if (FirstStageDestination != LastFirstStageDestination)
+            {
+                // If destination changed
+                NPC.TargetClosest(); // Pick the closest player target again
+
+                // "Why is this not in the same code that sets FirstStageDestination?" Because in multiplayer it's ran by the server.
+                // The client has to know when the destination changes a different way. Keeping track of the previous ticks' destination is one way
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    // For visuals regarding NPC position, netOffset has to be concidered to make visuals align properly
+                    NPC.position += NPC.netOffset;
+
+                    // Draw a line between the NPC and its destination, represented as dusts every 20 pixels
+                    //Dust.QuickDustLine(NPC.Center + toDestinationNormalized * NPC.width, FirstStageDestination, toDestination.Length() / 20f, Color.OrangeRed);
+
+                    NPC.position -= NPC.netOffset;
+                }
+            }
+            LastFirstStageDestination = FirstStageDestination;
+
+            if (phaseThreeRotationTimer == 360)
+            {
+                phaseThreeRotationTimer = 0;
+            }
+            phaseThreeRotationTimer += .03;
+
+            if(phaseThreeTimer % 45  == 0)
+            {
+                var source = NPC.GetSource_FromAI();
+                Vector2 position = NPC.Center;
+                Vector2 targetPosition = Main.player[NPC.target].Center;
+                Vector2 direction = targetPosition - position;
+                direction.Normalize();
+                float projSpeed = 5f;
+                int roll = random.Next(fireProjectiles.Length);
+                int type = fireProjectiles[roll];
+                int damage = NPC.damage; //If the projectile is hostile, the damage passed into NewProjectile will be applied doubled, and quadrupled if expert mode, so keep that in mind when balancing projectiles if you scale it off NPC.damage (which also increases for expert/master)
+                Projectile.NewProjectile(source, position, direction * projSpeed, 467, damage, 0f, Main.myPlayer);
+                phaseTwoTimer = 0;
+            }
+
+            if (phaseThreeTimer == 90)
+            {
+                WeightedSpawn();
+                phaseThreeTimer = 1;
+            }
+            phaseThreeTimer++;
         }
 
         private void SpawnNPCFromBoss(int id)
