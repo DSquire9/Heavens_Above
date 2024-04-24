@@ -143,7 +143,7 @@ namespace HeavensAbove.Content.Bosses
 
              public override void OnKill()
              {
-                 // This sets downedMinionBoss to true, and if it was false before, it initiates a lantern night
+                 // This sets downedSunSpirit to true, and if it was false before, it initiates a lantern night
                  NPC.SetEventFlagCleared(ref DownedBossSystem.downedSunSpirit, -1);
 
                  // Since this hook is only ran in singleplayer and serverside, we would have to sync it manually.
