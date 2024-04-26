@@ -9,15 +9,6 @@ namespace HeavensAbove
     {
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (HeavensAbove.EnterWorldKey.JustPressed)
-            {
-                SubworldSystem.Enter<HeavensAboveDimension>();
-            }
-            if (HeavensAbove.LeaveWorldKey.JustPressed)
-            {
-                SubworldSystem.Exit();
-
-            }
         }
 
         public override void PostUpdate()
