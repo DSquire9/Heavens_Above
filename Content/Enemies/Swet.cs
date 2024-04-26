@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using HeavensAbove.Content.Items;
 using HeavensAbove.Content.Items.Weapons;
+using System.Diagnostics;
 
 namespace HeavensAbove.Content.Enemies
 {
@@ -56,7 +57,7 @@ namespace HeavensAbove.Content.Enemies
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return ModContent.GetInstance<HeavenBiome>().IsBiomeActive(spawnInfo.Player) ? 0.5f : 0;
+            return ModContent.GetInstance<HeavenBiome>().IsBiomeActive(spawnInfo.Player) ? 0.7f : 0;
         }
 
         //    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
