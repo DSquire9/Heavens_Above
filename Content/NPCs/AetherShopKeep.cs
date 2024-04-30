@@ -128,22 +128,17 @@ namespace HeavensAbove.Content.NPCs
             {
                 return "Can you please tell " + Main.npc[partyGirl].GivenName + " to stop decorating my house with colors?";
             }*/
-            switch (Main.rand.Next(4))
+
+            switch (Main.rand.Next(3))
             {
                 case 0:
-                    return "Ever want to see the ground from really far away? I'll show you if agree to help me kill a god.";
-                /*case 1:
-                    return "What's your favorite color? My favorite colors are white and black.";
-                case 2:
-                    {
-                        // Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
-                        Main.npcChatCornerItem = ItemID.HiveBackpack;
-                        return $"Hey, if you find a [i:{ItemID.HiveBackpack}], I can upgrade it for you.";
-                    }*/
+                    return "I don't have all day here. Buy something or carry on.";
+                case 1:
+                    return "You interested in buying something, or are you just going to stand there?";
                 default:
-                    return "Hey! You seem like you’re a pretty powerful adventurer. " +
-                        "There’s this really cool place I’d like you to check out called the Aether. What do you say? Wanna go on an adventure?";
+                    return "Hurry up! I have other matters to attend to.";
             }
+
         }
 
         /* 
@@ -180,20 +175,16 @@ namespace HeavensAbove.Content.NPCs
                 switch (Main.rand.Next(4))
                 {
                     case 0:
-                        Main.npcChatText = "I love it when the sky is clear. I can see all the way to the ground.";
+                        Main.npcChatText = "I'd recommend buying some weapons right about now.";
                         break;
                     case 1:
-                        Main.npcChatText = "I love it when the sky is clear. I can see all the way to the ground.";
+                        Main.npcChatText = "You better buy some more equipment or you're not going to last very long.";
                         break;
                     case 2:
-                        {
-                            // Main.npcChatCornerItem shows a single item in the corner, like the Angler Quest chat.
-                            Main.npcChatCornerItem = ItemID.HiveBackpack;
-                            Main.npcChatText = $"Hey, if you find a [i:{ItemID.HiveBackpack}], I can upgrade it for you.";
-                            break;
-                        }
+                        Main.npcChatText = "My prices may be expensive, but death is the greatest cost of all.";
+                        break;
                     default:
-                        Main.npcChatText = "I hate purple monkeys. But I love dogs that solve mysteries.";
+                        Main.npcChatText = "Shopping at night is fine, but I'd advise against mining at night.";
                         break;
                 }
             }
