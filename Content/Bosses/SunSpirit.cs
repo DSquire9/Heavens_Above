@@ -68,11 +68,11 @@ namespace HeavensAbove.Content.Bosses
 
         public override void SetDefaults()
         {
-            NPC.width = 100;
-            NPC.height = 100;
-            NPC.damage = 12;
+            NPC.width = 200;
+            NPC.height = 200;
+            NPC.damage = 47;
             NPC.defense = 10;
-            NPC.lifeMax = 2000;
+            NPC.lifeMax = 28000;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = 0f;
@@ -335,7 +335,7 @@ namespace HeavensAbove.Content.Bosses
             // Move along the vector
             Vector2 toDestination = FirstStageDestination - NPC.Center;
             Vector2 toDestinationNormalized = toDestination.SafeNormalize(Vector2.UnitY);
-            float speed = 4f;
+            float speed = 3.5f;
             NPC.velocity = toDestinationNormalized * speed;
 
             if (FirstStageDestination != LastFirstStageDestination)
@@ -368,7 +368,7 @@ namespace HeavensAbove.Content.Bosses
                 float projSpeed = 5f;
                 int roll = random.Next(fireProjectiles.Length);
                 int type = fireProjectiles[roll];
-                int damage = NPC.damage; //If the projectile is hostile, the damage passed into NewProjectile will be applied doubled, and quadrupled if expert mode, so keep that in mind when balancing projectiles if you scale it off NPC.damage (which also increases for expert/master)
+                int damage = NPC.damage/2; //If the projectile is hostile, the damage passed into NewProjectile will be applied doubled, and quadrupled if expert mode, so keep that in mind when balancing projectiles if you scale it off NPC.damage (which also increases for expert/master)
                 Projectile.NewProjectile(source, position, direction * projSpeed, 467, damage, 0f, Main.myPlayer);
                 phaseTwoTimer = 1;
             }

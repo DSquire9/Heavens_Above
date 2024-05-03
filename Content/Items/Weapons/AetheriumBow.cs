@@ -44,7 +44,7 @@ namespace HeavensAbove.Content.Items.Weapons
         public override Vector2? HoldoutOffset()
         {
             // TODO: Change for nonplaceholder Art
-            return new Vector2(-3.5f, 0);
+            return new Vector2(5f, 0);
         }
     }
 }
