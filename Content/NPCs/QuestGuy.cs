@@ -67,12 +67,9 @@ namespace HeavensAbove.Content.NPCs
                     continue;
                 }
 
-                foreach (Item item in player.inventory)
+                if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
                 {
-                    if (item.type == ItemID.DirtBlock) // ToDo: Change this after dev is finished to be a common post-mech item
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
             return false;
@@ -133,7 +130,7 @@ namespace HeavensAbove.Content.NPCs
             if (SubworldSystem.Current != null)
             {
                 //check if sunspirit is dead or not
-                if(DownedBossSystem.downedSunSpirit == true) {
+                if(DownedBossSystem.downedSunSpirit) {
                     return "My work here is done. Great job, me.";
                 }
                 else
@@ -147,7 +144,7 @@ namespace HeavensAbove.Content.NPCs
             {
                 //Same check for if the first button is chat or quest
                 //if (Main.LocalPlayer.HasItem(ItemID.DirtBlock))
-                if (NPC.downedMechBossAny == true)
+                if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
                 {
                         switch (Main.rand.Next(3))
                         {
@@ -221,7 +218,7 @@ namespace HeavensAbove.Content.NPCs
         {
             if(firstButton)
             {
-                if(NPC.downedMechBossAny == true) //use same condition for switching between chat and quest in SetChatButtons
+                if(NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3) //use same condition for switching between chat and quest in SetChatButtons
                 {
                     SubworldSystem.Enter<HeavensAboveDimension>();
                 }

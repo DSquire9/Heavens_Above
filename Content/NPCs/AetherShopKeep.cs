@@ -67,12 +67,9 @@ namespace HeavensAbove.Content.NPCs
                     continue;
                 }
 
-                foreach (Item item in player.inventory)
+                if (NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3)
                 {
-                    if (item.type == ItemID.DirtBlock) // ToDo: Change this after dev is finished to be a common post-mech item
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
             return false;
