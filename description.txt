@@ -1,1 +1,27 @@
-Heavens Above is a pretty cool mod, it does...this. Modify this file with a description of your mod.
+This mod takes place in a new dimension called "The Aether". In this dimension there are several new resources, items, and NPCs:
+Resources:
+Aether Wood
+Aetherium Ore
+Aetherium Bars
+Aether Bloom
+Aether Dirt
+Items:
+Aether Wood Armor
+Aetherium Armor
+Aetherium Blade
+Aetherium Bow
+Aether Potion
+Icarian Wings (Boss Drop)
+
+Enemies:
+Swet
+Zephyr
+Sun Spirit (Boss)
+
+Town NPCs:
+Sten the Quest Giver
+The Aether Merchant
+
+Disclaimer: This Mod is currently still in Alpha, and is not yet a finished product.
+
+This mod was created as a team project for a game modding class within The School of Interactive Games and Media (IGM) at Rochester Institute of Technology in Rochester NY. IGM provides an educational environment that supports and encourages creative and collaborative academic inquiry by both faculty and students. IGM’s programs,  coursework, research, and development efforts provide students with the knowledge and skills to pursue meaningful  and rewarding careers in media-centric, interactive software development, while simultaneously advancing the field and helping to provide a well-rounded educational experience.
