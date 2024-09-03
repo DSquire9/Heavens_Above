@@ -32,7 +32,7 @@ namespace HeavensAbove.Content.Enemies
             NPC.defense = 6;
             NPC.lifeMax = 400;
             NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath2;
+            NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = 60f;
             NPC.knockBackResist = 0.5f;
             NPC.aiStyle = NPCID.BlueSlime;

@@ -20,18 +20,18 @@ namespace HeavensAbove.Content.Enemies
 
         public override void SetDefaults()
         {
-            NPC.width = 18;
-            NPC.height = 40;
+            NPC.width = 75;
+            NPC.height = 49;
             NPC.damage = 14;
             NPC.defense = 6;
             NPC.lifeMax = 200;
             NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath2;
+            NPC.DeathSound = SoundID.NPCDeath4;
             NPC.value = 60f;
             NPC.knockBackResist = 0.5f;
-            NPC.aiStyle = NPCID.Harpy;
-            AIType = NPCID.Harpy;
-            AnimationType = NPCID.Harpy;
+            NPC.aiStyle = 14;
+            AIType = 14;
+            AnimationType = 2;
             Banner = Item.NPCtoBanner(NPCID.Harpy);
             BannerItem = Item.BannerToItem(Banner);
 
@@ -40,7 +40,7 @@ namespace HeavensAbove.Content.Enemies
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return ModContent.GetInstance<HeavenBiome>().IsBiomeActive(spawnInfo.Player) ? 0 : 0;
+            return ModContent.GetInstance<HeavenBiome>().IsBiomeActive(spawnInfo.Player) ? 0.5f : 0;
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
